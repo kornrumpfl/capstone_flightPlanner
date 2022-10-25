@@ -58,11 +58,25 @@ export default function Main() {
       </Aircraft>
       <NumberOfPassengers>
         <h2>N° of Passengers</h2>
-        <input type="number" name="numberOfPassengers" placeholder="0"></input>
+        <input
+          type="number"
+          name="numberOfPassengers"
+          placeholder="0"
+          min="0"
+        ></input>
       </NumberOfPassengers>
+      <MainButtons>
+        <button>Clear Data</button>
+      </MainButtons>
     </InputFlightData>
   );
 }
+
+const InputFlightData = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
 
 const SectionFlightInfo = styled.section`
   margin-top: 2vw;
@@ -123,12 +137,6 @@ const Time = styled.section`
   }
 `;
 
-const InputFlightData = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-`;
-
 const Aircraft = styled.section`
   display: flex;
   flex-direction: column;
@@ -147,5 +155,15 @@ const NumberOfPassengers = styled.section`
   align-items: center;
   input {
     max-width: 20%;
+  }
+`;
+
+const MainButtons = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  button {
+    max-width: 40vw;
   }
 `;
