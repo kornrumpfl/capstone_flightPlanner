@@ -5,7 +5,11 @@ export default function Main() {
     <InputFlightData>
       <SectionFlightInfo>
         <h2>Flight number</h2>
-        <input type="text" name="flightNumber"></input>
+        <input
+          type="text"
+          name="flightNumber"
+          placeholder="Flight Number"
+        ></input>
       </SectionFlightInfo>
       <AirportSelection>
         <Departure>
@@ -52,6 +56,10 @@ export default function Main() {
           <option value="SF50">VISION JET</option>
         </select>
       </Aircraft>
+      <NumberOfPassengers>
+        <h2>N° of Passengers</h2>
+        <input type="number" name="numberOfPassengers" placeholder="0"></input>
+      </NumberOfPassengers>
     </InputFlightData>
   );
 }
@@ -59,6 +67,7 @@ export default function Main() {
 const SectionFlightInfo = styled.section`
   margin-top: 2vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   input {
@@ -76,13 +85,13 @@ const Departure = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   input {
     max-width: 40vw;
   }
   select {
-    margin: 2vw;
+    margin-top: 3vw;
   }
 `;
 
@@ -96,7 +105,7 @@ const Arrival = styled.div`
     max-width: 40vw;
   }
   select {
-    margin: 2vw;
+    margin-top: 3vw;
   }
 `;
 
@@ -129,5 +138,14 @@ const Aircraft = styled.section`
   select {
     max-width: 70%;
     min-width: 50%;
+  }
+`;
+const NumberOfPassengers = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  input {
+    max-width: 20%;
   }
 `;
