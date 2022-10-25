@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function Main() {
   return (
-    <section>
+    <InputFlightData>
       <SectionFlightInfo>
         <h2>Flight number</h2>
         <input type="text" name="flightNumber"></input>
@@ -35,7 +35,11 @@ export default function Main() {
           </select>
         </Arrival>
       </AirportSelection>
-    </section>
+      <Time>
+        <input name="flightDate" type="date" />
+        <input name="flightTime" type="time" />
+      </Time>
+    </InputFlightData>
   );
 }
 
@@ -75,4 +79,15 @@ const Arrival = styled.div`
   input {
     max-width: 40vw;
   }
+`;
+
+const Time = styled.section`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const InputFlightData = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
