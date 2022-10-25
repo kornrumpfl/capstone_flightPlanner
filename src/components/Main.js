@@ -66,13 +66,13 @@ export default function Main() {
         ></input>
       </NumberOfPassengers>
       <MainButtons>
-        <button>Clear Data</button>
+        <Button type="reset">Clear Data</Button>
       </MainButtons>
     </InputFlightData>
   );
 }
 
-const InputFlightData = styled.section`
+const InputFlightData = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -95,6 +95,7 @@ const AirportSelection = styled.section`
   align-items: center;
   justify-content: space-evenly;
 `;
+
 const Departure = styled.div`
   display: flex;
   flex-direction: column;
@@ -162,8 +163,15 @@ const MainButtons = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+`;
 
-  button {
-    max-width: 40vw;
+const Button = styled.button`
+  max-width: 40vw;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: lightblue;
+    cursor: pointer;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 `;
