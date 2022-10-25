@@ -1,10 +1,12 @@
 //import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Main from "./components/Main";
 
 function App() {
   return (
     <Container>
       <AppHeader>Flight Planner</AppHeader>
+      <Main />
     </Container>
   );
 }
@@ -17,7 +19,7 @@ const AppHeader = styled.header`
   top: 0;
   padding: 0.5rem;
   background-color: white;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 2vmin);
   color: black;
   border-bottom: 1px solid black;
 `;
