@@ -36,9 +36,22 @@ export default function Main() {
         </Arrival>
       </AirportSelection>
       <Time>
-        <input name="flightDate" type="date" />
-        <input name="flightTime" type="time" />
+        <h2>Flight Departure Date/Time</h2>
+        <div>
+          <input name="flightDate" type="date" />
+          <input name="flightTime" type="time" />
+        </div>
       </Time>
+      <Aircraft>
+        <h2>Aircraft Model</h2>
+        <select>
+          <option value="C172">CESSNA 172R</option>
+          <option value="B738">B737-800</option>
+          <option value="B74F">B747-400F</option>
+          <option value="B77L">B777-200LR</option>
+          <option value="SF50">VISION JET</option>
+        </select>
+      </Aircraft>
     </InputFlightData>
   );
 }
@@ -68,6 +81,9 @@ const Departure = styled.div`
   input {
     max-width: 40vw;
   }
+  select {
+    margin: 2vw;
+  }
 `;
 
 const Arrival = styled.div`
@@ -79,15 +95,39 @@ const Arrival = styled.div`
   input {
     max-width: 40vw;
   }
+  select {
+    margin: 2vw;
+  }
 `;
 
 const Time = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-content: center;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+  }
 `;
 
 const InputFlightData = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+`;
+
+const Aircraft = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2vw;
+  select {
+    max-width: 70%;
+    min-width: 50%;
+  }
 `;
