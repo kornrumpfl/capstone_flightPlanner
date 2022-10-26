@@ -5,6 +5,7 @@ import Navigation from "./components/navigation/Navigation";
 import { Routes, Route } from "react-router-dom";
 import LiveFlights from "./components/live/LiveFlights";
 import SavedFlightPlans from "./components/saved/SavedFlightPlans";
+import FlightPlan from "./components/flightPlan/flightPlan";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index path="/" element={<Main />} />
           <Route path="live" element={<LiveFlights />} />
           <Route path="saved" element={<SavedFlightPlans />} />
+          <Route path="flightplan" element={<FlightPlan />} />
         </Routes>
       </main>
       <Navigation />
