@@ -1,12 +1,23 @@
 //import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Main from "./components/Main";
+import Navigation from "./components/navigation/Navigation";
+import { Routes, Route } from "react-router-dom";
+import LiveFlights from "./components/live/LiveFlights";
+import SavedFlightPlans from "./components/saved/SavedFlightPlans";
 
 function App() {
   return (
     <Container>
       <AppHeader>Flight Planner</AppHeader>
-      <Main />
+      <main>
+        <Routes>
+          <Route index path="/" element={<Main />} />
+          <Route path="live" element={<LiveFlights />} />
+          <Route path="saved" element={<SavedFlightPlans />} />
+        </Routes>
+      </main>
+      <Navigation />
     </Container>
   );
 }
