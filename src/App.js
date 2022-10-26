@@ -12,7 +12,7 @@ function App() {
   return (
     <Container>
       <AppHeader>Flight Planner</AppHeader>
-      <main>
+      <MainStyled>
         <Routes>
           <Route index path="/" element={<Main />} />
           <Route path="live" element={<LiveFlights />} />
@@ -20,11 +20,12 @@ function App() {
           <Route path="flightplan" element={<FlightPlan />} />
           <Route path="*" element={<Error />} />
         </Routes>
-      </main>
+      </MainStyled>
       <Navigation />
     </Container>
   );
 }
+export default App;
 
 const Container = styled.div`
   text-align: center;
@@ -33,10 +34,12 @@ const Container = styled.div`
 const AppHeader = styled.header`
   top: 0;
   padding: 0.5rem;
-  background-color: white;
+  background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
   font-size: calc(20px + 2vmin);
   color: black;
   border-bottom: 1px solid black;
 `;
 
-export default App;
+const MainStyled = styled.main`
+  margin-bottom: 120px;
+`;
