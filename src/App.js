@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import LiveFlights from "./components/live/LiveFlights";
 import SavedFlightPlans from "./components/saved/SavedFlightPlans";
 import FlightPlan from "./components/flightPlan/flightPlan";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="live" element={<LiveFlights />} />
           <Route path="saved" element={<SavedFlightPlans />} />
           <Route path="flightplan" element={<FlightPlan />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </main>
       <Navigation />

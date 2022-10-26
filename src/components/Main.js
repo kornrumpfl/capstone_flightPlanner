@@ -1,6 +1,7 @@
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 export default function Main() {
+  const navigate = useNavigate();
   return (
     <InputFlightData>
       <SectionFlightInfo>
@@ -98,7 +99,12 @@ export default function Main() {
         ></input>
       </NumberOfPassengers>
       <MainButtons>
-        <Button aria-label="Create Flight Plan">Create Flight Plan</Button>
+        <Button
+          aria-label="Create Flight Plan"
+          onClick={() => navigate("/flightplan")}
+        >
+          Create Flight Plan
+        </Button>
         <Button type="reset" aria-label="reset data">
           Clear Data
         </Button>
