@@ -98,6 +98,7 @@ export default function Main() {
         ></input>
       </NumberOfPassengers>
       <MainButtons>
+        <Button aria-label="Create Flight Plan">Create Flight Plan</Button>
         <Button type="reset" aria-label="reset data">
           Clear Data
         </Button>
