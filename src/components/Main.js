@@ -9,6 +9,7 @@ export default function Main() {
           type="text"
           name="flightNumber"
           placeholder="Flight Number"
+          aria-label="flight Number"
         ></input>
       </SectionFlightInfo>
       <AirportSelection>
@@ -18,12 +19,21 @@ export default function Main() {
             type="text"
             name="departureAirport"
             placeholder="Departure airport"
+            aria-label="departure airport"
           ></input>
-          <select>
-            <option value="RW5">RW 5</option>
-            <option value="RW15">RW 15</option>
-            <option value="RW23">RW 23</option>
-            <option value="RW33">RW 33</option>
+          <select aria-label="select a runaway for departure">
+            <option value="RW5" aria-label="runaway five">
+              RW 5
+            </option>
+            <option value="RW15" aria-label="runaway fifteen">
+              RW 15
+            </option>
+            <option value="RW23" aria-label="runaway twenty three">
+              RW 23
+            </option>
+            <option value="RW33" aria-label="runaway thirty three">
+              RW 33
+            </option>
           </select>
         </Departure>
         <Arrival>
@@ -32,28 +42,49 @@ export default function Main() {
             type="text"
             name="arrivalAirport"
             placeholder="Arrival airport"
+            aria-label="arrival airport"
           ></input>
-          <select>
-            <option value="RW8">RW 8</option>
-            <option value="RW23">RW 26</option>
+          <select aria-label="select a runaway for arrival">
+            <option value="RW07L" aria-label="runaway seven left">
+              RW 7L
+            </option>
+            <option value="RW25R" aria-label="runaway twenty five right">
+              RW 25R
+            </option>
+            <option value="RW07R" aria-label="runaway seven right">
+              RW 7R
+            </option>
+            <option value="RW25L" aria-label="runaway twenty five left">
+              RW 25L
+            </option>
           </select>
         </Arrival>
       </AirportSelection>
       <Time>
         <h2>Flight Departure Date/Time</h2>
         <div>
-          <input name="flightDate" type="date" />
-          <input name="flightTime" type="time" />
+          <input name="flightDate" type="date" aria-label="date" />
+          <input name="flightTime" type="time" aria-label="time" />
         </div>
       </Time>
       <Aircraft>
         <h2>Aircraft Model</h2>
-        <select>
-          <option value="C172">CESSNA 172R</option>
-          <option value="B738">B737-800</option>
-          <option value="B74F">B747-400F</option>
-          <option value="B77L">B777-200LR</option>
-          <option value="SF50">VISION JET</option>
+        <select aria-label="select a aircraft model">
+          <option value="C172" aria-label="cessna 172R">
+            CESSNA 172R
+          </option>
+          <option value="B738" aria-label="boing 737">
+            B737-800
+          </option>
+          <option value="B74F" aria-label="boing 747">
+            B747-400F
+          </option>
+          <option value="B77L" aria-label="boing 777">
+            B777-200LR
+          </option>
+          <option value="SF50" aria-label="vision jet">
+            VISION JET
+          </option>
         </select>
       </Aircraft>
       <NumberOfPassengers>
@@ -63,10 +94,13 @@ export default function Main() {
           name="numberOfPassengers"
           placeholder="0"
           min="0"
+          aria-label="number of passengers"
         ></input>
       </NumberOfPassengers>
       <MainButtons>
-        <Button type="reset">Clear Data</Button>
+        <Button type="reset" aria-label="reset data">
+          Clear Data
+        </Button>
       </MainButtons>
     </InputFlightData>
   );
@@ -78,7 +112,8 @@ const InputFlightData = styled.form`
   justify-content: space-evenly;
 `;
 
-const SectionFlightInfo = styled.section`
+const SectionFlightInfo = styled.fieldset`
+  border: none;
   margin-top: 2vw;
   display: flex;
   flex-direction: column;
@@ -89,7 +124,8 @@ const SectionFlightInfo = styled.section`
   }
 `;
 
-const AirportSelection = styled.section`
+const AirportSelection = styled.fieldset`
+  border: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -124,7 +160,8 @@ const Arrival = styled.div`
   }
 `;
 
-const Time = styled.section`
+const Time = styled.fieldset`
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -138,7 +175,8 @@ const Time = styled.section`
   }
 `;
 
-const Aircraft = styled.section`
+const Aircraft = styled.fieldset`
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -149,7 +187,8 @@ const Aircraft = styled.section`
     min-width: 50%;
   }
 `;
-const NumberOfPassengers = styled.section`
+const NumberOfPassengers = styled.fieldset`
+  border: none;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -159,7 +198,8 @@ const NumberOfPassengers = styled.section`
   }
 `;
 
-const MainButtons = styled.section`
+const MainButtons = styled.fieldset`
+  border: none;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
