@@ -21,13 +21,25 @@ const savedInitial = [
     aircraft: "SF50",
     numberOfPassengers: 4,
   },
+  {
+    id: "LK4321",
+    departureAirport: "EDDH",
+    departureRunaway: "RW23",
+    arrivalAirport: "EDDB",
+    arrivalRunaway: "RW25L",
+    flightDate: "2022-10-26",
+    flightTime: "02:00",
+    aircraft: "B737",
+    numberOfPassengers: 240,
+  },
 ];
+
 function App() {
   const [flightPlanData, setFlightPlanData] = useState();
-  const [saveFlightPlanData, setSaveFlightPlanData] = useState(savedInitial);
+  const [savedFlightPlanData, setSavedFlightPlanData] = useState(savedInitial);
 
-  function saveFlightData(
-    flightNumber,
+  function savedFlightData(
+    id,
     departureAirport,
     departureRunaway,
     arrivalAirport,
@@ -37,10 +49,10 @@ function App() {
     aircraft,
     numberOfPassengers
   ) {
-    setSaveFlightPlanData([
-      ...saveFlightPlanData,
+    setSavedFlightPlanData([
+      ...savedFlightPlanData,
       {
-        id: flightNumber,
+        id: id,
         departureAirport: departureAirport,
         departureRunaway: departureRunaway,
         arrivalAirport: arrivalAirport,
@@ -54,7 +66,7 @@ function App() {
   }
 
   function passFlightData(
-    flightNumber,
+    id,
     departureAirport,
     departureRunaway,
     arrivalAirport,
@@ -65,7 +77,7 @@ function App() {
     numberOfPassengers
   ) {
     setFlightPlanData({
-      id: flightNumber,
+      id: id,
       departureAirport: departureAirport,
       departureRunaway: departureRunaway,
       arrivalAirport: arrivalAirport,
@@ -90,14 +102,16 @@ function App() {
           <Route path="live" element={<LiveFlights />} />
           <Route
             path="saved"
-            element={<SavedFlightPlans saveFlightData={saveFlightData} />}
+            element={
+              <SavedFlightPlans savedFlightPlanData={savedFlightPlanData} />
+            }
           />
           <Route
             path="flightplan"
             element={
               <FlightPlan
                 flightPlanData={flightPlanData}
-                onSavePlan={saveFlightData}
+                onSavePlan={savedFlightData}
               />
             }
           />
