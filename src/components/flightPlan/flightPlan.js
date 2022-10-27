@@ -2,16 +2,15 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 
-export default function FlightPlan() {
+export default function FlightPlan({ flighPlanData }) {
   const position = [53.633354, 9.999303];
   const navigate = useNavigate();
+  console.log(flighPlanData);
   return (
     <div>
-      <h1>Flight Plan</h1>
-      <p>bla bla bla bla bla bla bla bla</p>
-      <p>bla bla bla bla bla bla bla bla</p>
-      <p>bla bla bla bla bla bla bla bla</p>
-      <p>bla bla bla bla bla bla bla bla</p>
+      <h2>Fligh Plan Information</h2>
+      <p>Departure Airport: {flighPlanData.departureAirport}</p>
+
       <MapContainer
         className="plan-map leaflet-container leaflet-touch leaflet-safari leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
         center={position}

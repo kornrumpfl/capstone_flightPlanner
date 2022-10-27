@@ -7,17 +7,53 @@ import LiveFlights from "./components/live/LiveFlights";
 import SavedFlightPlans from "./components/saved/SavedFlightPlans";
 import FlightPlan from "./components/flightPlan/flightPlan";
 import Error from "./pages/Error";
+import { useState } from "react";
 
 function App() {
+  const [flighPlanData, setFlightPlanData] = useState();
+
+  function passFlighData(
+    flightNumber,
+    departureAirport,
+    departureRunaway,
+    arrivalAirport,
+    arrivalRunaway,
+    flightDate,
+    flightTime,
+    aircraft,
+    numberOfPassengers
+  ) {
+    setFlightPlanData([
+      {
+        id: flightNumber,
+        departureAirport: departureAirport,
+        departureRunaway: departureRunaway,
+        arrivalAirport: arrivalAirport,
+        arrivalRunaway: arrivalRunaway,
+        flightDate: flightDate,
+        flightTime: flightTime,
+        aircraft: aircraft,
+        numberOfPassengers: numberOfPassengers,
+      },
+    ]);
+  }
+
   return (
     <Container>
       <AppHeader>Flight Planner</AppHeader>
       <MainStyled>
         <Routes>
-          <Route index path="/" element={<Main />} />
+          <Route
+            index
+            path="/"
+            element={<Main onHandleSubmit={passFlighData} />}
+          />
           <Route path="live" element={<LiveFlights />} />
           <Route path="saved" element={<SavedFlightPlans />} />
-          <Route path="flightplan" element={<FlightPlan />} />
+          <Route
+            path="flightplan"
+            element={<FlightPlan flighPlanData={flighPlanData} />}
+          />
           <Route path="*" element={<Error />} />
         </Routes>
       </MainStyled>

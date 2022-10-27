@@ -1,14 +1,43 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-export default function Main() {
+import { useState } from "react";
+
+export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
+  const [departureRunaway, setDepartureRunaway] = useState();
+  const [arrivalRunaway, setArrivalRunaway] = useState();
+  const [aircraft, setAircraft] = useState();
+
+  function onSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const { flightNumber } = form.elements;
+    const { departureAirport } = form.elements;
+    const { arrivalAirport } = form.elements;
+    const { flightDate } = form.elements;
+    const { flightTime } = form.elements;
+    const { numberOfPassengers } = form.elements;
+    onHandleSubmit(
+      flightNumber.value,
+      departureAirport.value,
+      departureRunaway,
+      arrivalAirport.value,
+      arrivalRunaway,
+      flightDate.value,
+      flightTime.value,
+      aircraft,
+      numberOfPassengers.value
+    );
+    navigate("/flightplan");
+  }
+
   return (
-    <InputFlightData>
+    <InputFlightData onSubmit={onSubmit}>
       <SectionFlightInfo>
         <h2>Flight number</h2>
         <input
           type="text"
-          name="flightNumber"
+          id="flightNumber"
           placeholder="Flight Number"
           aria-label="flight Number"
         ></input>
@@ -18,12 +47,16 @@ export default function Main() {
           <h2>Departure</h2>
           <input
             type="text"
-            name="departureAirport"
+            id="departureAirport"
             placeholder="Departure airport"
             aria-label="departure airport"
           ></input>
-          <select aria-label="select a runaway for departure">
-            <option value="RW5" aria-label="runaway five">
+          <select
+            aria-label="select a runaway for departure"
+            id="departureRunaway"
+            onChange={(d) => setDepartureRunaway(d.target.value)}
+          >
+            <option value="RW05" aria-label="runaway five">
               RW 5
             </option>
             <option value="RW15" aria-label="runaway fifteen">
@@ -41,11 +74,15 @@ export default function Main() {
           <h2>Arrival</h2>
           <input
             type="text"
-            name="arrivalAirport"
+            id="arrivalAirport"
             placeholder="Arrival airport"
             aria-label="arrival airport"
           ></input>
-          <select aria-label="select a runaway for arrival">
+          <select
+            aria-label="select a runaway for arrival"
+            id="arrivalRunaway"
+            onChange={(a) => setArrivalRunaway(a.target.value)}
+          >
             <option value="RW07L" aria-label="runaway seven left">
               RW 7L
             </option>
@@ -64,13 +101,17 @@ export default function Main() {
       <Time>
         <h2>Flight Departure Date/Time</h2>
         <div>
-          <input name="flightDate" type="date" aria-label="date" />
-          <input name="flightTime" type="time" aria-label="time" />
+          <input id="flightDate" type="date" aria-label="date" />
+          <input id="flightTime" type="time" aria-label="time" />
         </div>
       </Time>
       <Aircraft>
         <h2>Aircraft Model</h2>
-        <select aria-label="select a aircraft model">
+        <select
+          aria-label="select a aircraft model"
+          id="Aircraft"
+          onChange={(e) => setAircraft(e.target.value)}
+        >
           <option value="C172" aria-label="cessna 172R">
             CESSNA 172R
           </option>
@@ -92,7 +133,7 @@ export default function Main() {
         <h2>N° of Passengers</h2>
         <input
           type="number"
-          name="numberOfPassengers"
+          id="numberOfPassengers"
           placeholder="0"
           min="0"
           aria-label="number of passengers"
@@ -101,7 +142,8 @@ export default function Main() {
       <MainButtons>
         <Button
           aria-label="Create Flight Plan"
-          onClick={() => navigate("/flightplan")}
+          //          onClick={() => navigate("/flightplan")}
+          type="submit"
         >
           Create Flight Plan
         </Button>
