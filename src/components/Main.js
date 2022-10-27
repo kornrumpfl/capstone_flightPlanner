@@ -11,14 +11,14 @@ export default function Main({ onHandleSubmit }) {
   function onSubmit(event) {
     event.preventDefault();
     const form = event.target;
-    const { flightNumber } = form.elements;
+    const { id } = form.elements;
     const { departureAirport } = form.elements;
     const { arrivalAirport } = form.elements;
     const { flightDate } = form.elements;
     const { flightTime } = form.elements;
     const { numberOfPassengers } = form.elements;
     onHandleSubmit(
-      flightNumber.value,
+      id.value,
       departureAirport.value,
       departureRunaway,
       arrivalAirport.value,
@@ -37,7 +37,7 @@ export default function Main({ onHandleSubmit }) {
         <h2>Flight number</h2>
         <input
           type="text"
-          id="flightNumber"
+          id="id"
           placeholder="Flight Number"
           aria-label="flight Number"
         ></input>
@@ -54,8 +54,9 @@ export default function Main({ onHandleSubmit }) {
           <select
             aria-label="select a runaway for departure"
             id="departureRunaway"
-            onChange={(d) => setDepartureRunaway(d.target.value)}
+            onChange={(e) => setDepartureRunaway(e.target.value)}
           >
+            <option value="--" aria-label="initial state"></option>
             <option value="RW05" aria-label="runaway five">
               RW 5
             </option>
@@ -81,8 +82,9 @@ export default function Main({ onHandleSubmit }) {
           <select
             aria-label="select a runaway for arrival"
             id="arrivalRunaway"
-            onChange={(a) => setArrivalRunaway(a.target.value)}
+            onChange={(e) => setArrivalRunaway(e.target.value)}
           >
+            <option value="--" aria-label="initial state"></option>
             <option value="RW07L" aria-label="runaway seven left">
               RW 7L
             </option>
@@ -112,6 +114,7 @@ export default function Main({ onHandleSubmit }) {
           id="Aircraft"
           onChange={(e) => setAircraft(e.target.value)}
         >
+          <option value="--" aria-label="initial state"></option>
           <option value="C172" aria-label="cessna 172R">
             CESSNA 172R
           </option>
@@ -140,11 +143,7 @@ export default function Main({ onHandleSubmit }) {
         ></input>
       </NumberOfPassengers>
       <MainButtons>
-        <Button
-          aria-label="Create Flight Plan"
-          //          onClick={() => navigate("/flightplan")}
-          type="submit"
-        >
+        <Button aria-label="Create Flight Plan" type="submit">
           Create Flight Plan
         </Button>
         <Button type="reset" aria-label="reset data">

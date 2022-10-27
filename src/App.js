@@ -9,10 +9,24 @@ import FlightPlan from "./components/flightPlan/flightPlan";
 import Error from "./pages/Error";
 import { useState } from "react";
 
+const savedInitial = [
+  {
+    id: "LK1234",
+    departureAirport: "EDDH",
+    departureRunaway: "RW33",
+    arrivalAirport: "EDDB",
+    arrivalRunaway: "RW07L",
+    flightDate: "2022-10-28",
+    flightTime: "01:00",
+    aircraft: "SF50",
+    numberOfPassengers: 4,
+  },
+];
 function App() {
-  const [flighPlanData, setFlightPlanData] = useState();
+  const [flightPlanData, setFlightPlanData] = useState();
+  const [saveFlightPlanData, setSaveFlightPlanData] = useState(savedInitial);
 
-  function passFlighData(
+  function saveFlightData(
     flightNumber,
     departureAirport,
     departureRunaway,
@@ -23,7 +37,8 @@ function App() {
     aircraft,
     numberOfPassengers
   ) {
-    setFlightPlanData([
+    setSaveFlightPlanData([
+      ...saveFlightPlanData,
       {
         id: flightNumber,
         departureAirport: departureAirport,
@@ -38,6 +53,30 @@ function App() {
     ]);
   }
 
+  function passFlightData(
+    flightNumber,
+    departureAirport,
+    departureRunaway,
+    arrivalAirport,
+    arrivalRunaway,
+    flightDate,
+    flightTime,
+    aircraft,
+    numberOfPassengers
+  ) {
+    setFlightPlanData({
+      id: flightNumber,
+      departureAirport: departureAirport,
+      departureRunaway: departureRunaway,
+      arrivalAirport: arrivalAirport,
+      arrivalRunaway: arrivalRunaway,
+      flightDate: flightDate,
+      flightTime: flightTime,
+      aircraft: aircraft,
+      numberOfPassengers: numberOfPassengers,
+    });
+  }
+
   return (
     <Container>
       <AppHeader>Flight Planner</AppHeader>
@@ -46,13 +85,21 @@ function App() {
           <Route
             index
             path="/"
-            element={<Main onHandleSubmit={passFlighData} />}
+            element={<Main onHandleSubmit={passFlightData} />}
           />
           <Route path="live" element={<LiveFlights />} />
-          <Route path="saved" element={<SavedFlightPlans />} />
+          <Route
+            path="saved"
+            element={<SavedFlightPlans saveFlightData={saveFlightData} />}
+          />
           <Route
             path="flightplan"
-            element={<FlightPlan flighPlanData={flighPlanData} />}
+            element={
+              <FlightPlan
+                flightPlanData={flightPlanData}
+                onSavePlan={saveFlightData}
+              />
+            }
           />
           <Route path="*" element={<Error />} />
         </Routes>

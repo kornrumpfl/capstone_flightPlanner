@@ -1,11 +1,20 @@
 import styled from "styled-components";
-import Icon from "../logos/underconstruction";
 
-export default function SavedFlightPlans() {
+export default function SavedFlightPlans({ saveFlightData }) {
   return (
     <SavedFlightPlansDiv>
       <h1>Saved flight plans</h1>
-      <Icon />
+      {saveFlightData.map((item) => {
+        console.log(item);
+        return (
+          <SavedItem>
+            <h2>{item.id}</h2>
+            <p>
+              {item.departureAirport}-{item.arrivelAirport}
+            </p>
+          </SavedItem>
+        );
+      })}
     </SavedFlightPlansDiv>
   );
 }
@@ -15,13 +24,15 @@ const SavedFlightPlansDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+`;
 
-  svg {
-    scale: 0.5;
+const SavedItem = styled.li`
+  background-color: lightblue;
+  border-radius: 20px;
+  h2 {
+    text-align: start;
   }
-  @media only screen and (max-width: 500px) {
-    svg {
-      scale: 0.2;
-    }
+  p {
+    text-align: center;
   }
 `;
