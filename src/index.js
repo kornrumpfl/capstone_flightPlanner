@@ -4,6 +4,7 @@ import GlobalStyle from "./GlobalStyle";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import "leaflet/dist/leaflet.css"; //need this for the style of the map
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
