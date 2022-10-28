@@ -72,6 +72,12 @@ function App() {
     });
   }
 
+  function deleteFlightPlan(flightPlanId) {
+    setSavedFlightPlanData(
+      savedFlightPlanData.filter(({ id }) => flightPlanId !== id)
+    );
+  }
+
   return (
     <Container>
       <AppHeader>Flight Planner</AppHeader>
@@ -86,7 +92,10 @@ function App() {
           <Route
             path="saved"
             element={
-              <SavedFlightPlans savedFlightPlanData={savedFlightPlanData} />
+              <SavedFlightPlans
+                savedFlightPlanData={savedFlightPlanData}
+                onDelete={deleteFlightPlan}
+              />
             }
           />
           <Route

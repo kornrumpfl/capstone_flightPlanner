@@ -1,15 +1,16 @@
 import styled from "styled-components";
+import DeleteLogo from "../logos/deletelogo";
 
 export default function SavedFlightPlans({
   savedFlightPlanData,
   loadFlightPlan,
+  onDelete,
 }) {
   return (
     <SavedFlightPlansSection>
       <h1>Saved flight plans</h1>
 
       {savedFlightPlanData.map((item) => {
-        console.log(item);
         return (
           <ListOfFlightPlans>
             <SavedItem onClick={loadFlightPlan}>
@@ -17,6 +18,9 @@ export default function SavedFlightPlans({
               <p>
                 {item.departureAirport}-{item.arrivalAirport}
               </p>
+              <DeleteLogoStyled onClick={() => onDelete(item.id)}>
+                <DeleteLogo />
+              </DeleteLogoStyled>
             </SavedItem>
           </ListOfFlightPlans>
         );
@@ -24,6 +28,21 @@ export default function SavedFlightPlans({
     </SavedFlightPlansSection>
   );
 }
+
+const DeleteLogoStyled = styled.button`
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+
+  svg {
+    width: 2.2em;
+    height: 2.2em;
+  }
+`;
 
 const SavedFlightPlansSection = styled.section`
   display: flex;
@@ -46,7 +65,7 @@ const SavedItem = styled.li`
   border-radius: 10px;
   list-style-type: none;
   width: 20rem;
-  padding: 0 1em 0 1em;
+
   h3 {
     text-align: start;
   }

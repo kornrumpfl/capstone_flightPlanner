@@ -6,7 +6,6 @@ import DepartureLogo from "../logos/departurelogo";
 import ArrivalLogo from "../logos/arrivallogo";
 import DateandTimeLogo from "../logos/dateandtimelogo";
 import PassengersLogo from "../logos/passengerslogo";
-import { NavLink } from "react-router-dom";
 import HomeLogo from "../logos/homelogo";
 import SavedLogo from "../logos/savedlogo";
 
