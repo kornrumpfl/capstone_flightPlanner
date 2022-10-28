@@ -5,7 +5,7 @@ export default function SavedFlightPlans({
   loadFlightPlan,
 }) {
   return (
-    <SavedFlightPlansDiv>
+    <SavedFlightPlansSection>
       <h1>Saved flight plans</h1>
 
       {savedFlightPlanData.map((item) => {
@@ -21,11 +21,11 @@ export default function SavedFlightPlans({
           </ListOfFlightPlans>
         );
       })}
-    </SavedFlightPlansDiv>
+    </SavedFlightPlansSection>
   );
 }
 
-const SavedFlightPlansDiv = styled.div`
+const SavedFlightPlansSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

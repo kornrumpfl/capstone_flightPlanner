@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { mockComponent } from "react-dom/test-utils";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
