@@ -1,11 +1,26 @@
 import styled from "styled-components";
-import Icon from "../logos/underconstruction";
 
-export default function SavedFlightPlans() {
+export default function SavedFlightPlans({
+  savedFlightPlanData,
+  loadFlightPlan,
+}) {
   return (
     <SavedFlightPlansDiv>
       <h1>Saved flight plans</h1>
-      <Icon />
+
+      {savedFlightPlanData.map((item) => {
+        console.log(item);
+        return (
+          <ListOfFlightPlans>
+            <SavedItem onClick={loadFlightPlan}>
+              <h3>{item.id}</h3>
+              <p>
+                {item.departureAirport}-{item.arrivalAirport}
+              </p>
+            </SavedItem>
+          </ListOfFlightPlans>
+        );
+      })}
     </SavedFlightPlansDiv>
   );
 }
@@ -13,15 +28,29 @@ export default function SavedFlightPlans() {
 const SavedFlightPlansDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: flex-start;
+`;
 
-  svg {
-    scale: 0.5;
+const ListOfFlightPlans = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
+
+const SavedItem = styled.li`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: lightblue;
+  border-radius: 10px;
+  list-style-type: none;
+  width: 20rem;
+  padding: 0 1em 0 1em;
+  h3 {
+    text-align: start;
   }
-  @media only screen and (max-width: 500px) {
-    svg {
-      scale: 0.2;
-    }
+  p {
+    text-align: center;
   }
 `;
