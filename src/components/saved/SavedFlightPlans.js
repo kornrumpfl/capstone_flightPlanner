@@ -1,15 +1,16 @@
 import styled from "styled-components";
+import DeleteLogo from "../logos/deletelogo";
 
 export default function SavedFlightPlans({
   savedFlightPlanData,
   loadFlightPlan,
+  onDelete,
 }) {
   return (
-    <SavedFlightPlansDiv>
+    <SavedFlightPlansSection>
       <h1>Saved flight plans</h1>
 
       {savedFlightPlanData.map((item) => {
-        console.log(item);
         return (
           <ListOfFlightPlans>
             <SavedItem onClick={loadFlightPlan}>
@@ -17,15 +18,37 @@ export default function SavedFlightPlans({
               <p>
                 {item.departureAirport}-{item.arrivalAirport}
               </p>
+              <DeleteLogoStyled onClick={() => onDelete(item.id)}>
+                <DeleteLogo />
+              </DeleteLogoStyled>
             </SavedItem>
           </ListOfFlightPlans>
         );
       })}
-    </SavedFlightPlansDiv>
+    </SavedFlightPlansSection>
   );
 }
 
-const SavedFlightPlansDiv = styled.div`
+const DeleteLogoStyled = styled.button`
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+
+  svg {
+    width: 2.2em;
+    height: 2.2em;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-radius: 55%;
+    padding: 2px;
+  }
+`;
+
+const SavedFlightPlansSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -46,7 +69,7 @@ const SavedItem = styled.li`
   border-radius: 10px;
   list-style-type: none;
   width: 20rem;
-  padding: 0 1em 0 1em;
+
   h3 {
     text-align: start;
   }

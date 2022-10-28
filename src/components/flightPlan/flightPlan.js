@@ -6,7 +6,6 @@ import DepartureLogo from "../logos/departurelogo";
 import ArrivalLogo from "../logos/arrivallogo";
 import DateandTimeLogo from "../logos/dateandtimelogo";
 import PassengersLogo from "../logos/passengerslogo";
-import { NavLink } from "react-router-dom";
 import HomeLogo from "../logos/homelogo";
 import SavedLogo from "../logos/savedlogo";
 
@@ -119,7 +118,10 @@ const ButtonStyled = styled.div`
   margin-top: 20px;
   margin-bottom: 150px;
   button {
-    background-color: transparent;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
   }
   svg {
     height: 3em;
