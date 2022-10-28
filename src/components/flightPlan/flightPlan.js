@@ -118,7 +118,10 @@ const ButtonStyled = styled.div`
   margin-top: 20px;
   margin-bottom: 150px;
   button {
-    background-color: transparent;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
   }
   svg {
     height: 3em;

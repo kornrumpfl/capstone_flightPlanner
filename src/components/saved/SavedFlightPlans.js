@@ -30,9 +30,7 @@ export default function SavedFlightPlans({
 }
 
 const DeleteLogoStyled = styled.button`
-  display: flex;
   position: relative;
-  align-items: flex-end;
   margin: 0;
   padding: 0;
   background: none;
@@ -41,6 +39,12 @@ const DeleteLogoStyled = styled.button`
   svg {
     width: 2.2em;
     height: 2.2em;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-radius: 55%;
+    padding: 2px;
   }
 `;
 
