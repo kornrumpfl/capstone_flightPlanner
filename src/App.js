@@ -7,8 +7,9 @@ import LiveFlights from "./components/live/LiveFlights";
 import SavedFlightPlans from "./components/saved/SavedFlightPlans";
 import FlightPlan from "./components/flightPlan/flightPlan";
 import Error from "./pages/Error";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { saveToLocal, loadFromLocal } from "../src/components/LocalStorage";
+//initial flight plans
 const savedInitial = [
   {
     id: "LK1234",
@@ -36,8 +37,14 @@ const savedInitial = [
 
 function App() {
   const [flightPlanData, setFlightPlanData] = useState();
-  const [savedFlightPlanData, setSavedFlightPlanData] = useState(savedInitial);
+  const [savedFlightPlanData, setSavedFlightPlanData] = useState(
+    loadFromLocal("savedFlightPlanData") ?? savedInitial
+  );
 
+  useEffect(() => {
+    saveToLocal("savedFlightPlanData", savedFlightPlanData);
+  }, [savedFlightPlanData]);
+  //function for the save the flight plans
   function savedFlightData(
     id,
     departureAirport,
@@ -64,7 +71,7 @@ function App() {
       },
     ]);
   }
-
+  //function to pass inputs value into the flight plan page
   function passFlightData(
     id,
     departureAirport,

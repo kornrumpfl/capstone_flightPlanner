@@ -48,7 +48,7 @@ export default function Main({ onHandleSubmit }) {
           <input
             type="text"
             id="departureAirport"
-            placeholder="Departure airport"
+            placeholder="Departure airport ICAO"
             aria-label="departure airport"
           ></input>
           <select
@@ -76,7 +76,7 @@ export default function Main({ onHandleSubmit }) {
           <input
             type="text"
             id="arrivalAirport"
-            placeholder="Arrival airport"
+            placeholder="Arrival airport ICAO"
             aria-label="arrival airport"
           ></input>
           <select

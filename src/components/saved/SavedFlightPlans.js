@@ -1,22 +1,26 @@
 import styled from "styled-components";
 
-export default function SavedFlightPlans({ savedFlightPlanData }) {
+export default function SavedFlightPlans({
+  savedFlightPlanData,
+  loadFlightPlan,
+}) {
   return (
     <SavedFlightPlansDiv>
       <h1>Saved flight plans</h1>
-      <ListOfFlightPlans>
-        {savedFlightPlanData.map((item) => {
-          console.log(item);
-          return (
-            <SavedItem>
+
+      {savedFlightPlanData.map((item) => {
+        console.log(item);
+        return (
+          <ListOfFlightPlans>
+            <SavedItem onClick={loadFlightPlan}>
               <h3>{item.id}</h3>
               <p>
                 {item.departureAirport}-{item.arrivalAirport}
               </p>
             </SavedItem>
-          );
-        })}
-      </ListOfFlightPlans>
+          </ListOfFlightPlans>
+        );
+      })}
     </SavedFlightPlansDiv>
   );
 }
@@ -24,16 +28,20 @@ export default function SavedFlightPlans({ savedFlightPlanData }) {
 const SavedFlightPlansDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
 const ListOfFlightPlans = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;
 
 const SavedItem = styled.li`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: lightblue;
   border-radius: 10px;
   list-style-type: none;
