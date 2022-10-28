@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { mockComponent } from "react-dom/test-utils";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
@@ -38,8 +39,9 @@ export default function Main({ onHandleSubmit }) {
         <input
           type="text"
           id="id"
-          placeholder="Flight Number"
+          placeholder="ex. LK1234"
           aria-label="flight Number"
+          maxLength={6}
         ></input>
       </SectionFlightInfo>
       <AirportSelection>
@@ -48,8 +50,9 @@ export default function Main({ onHandleSubmit }) {
           <input
             type="text"
             id="departureAirport"
-            placeholder="Departure airport ICAO"
+            placeholder="Departure airport ICAO ex. EDDH"
             aria-label="departure airport"
+            maxLength={4}
           ></input>
           <select
             aria-label="select a runaway for departure"
@@ -76,8 +79,9 @@ export default function Main({ onHandleSubmit }) {
           <input
             type="text"
             id="arrivalAirport"
-            placeholder="Arrival airport ICAO"
+            placeholder="Arrival airport ICAO ex. EDDB"
             aria-label="arrival airport"
+            maxLength={4}
           ></input>
           <select
             aria-label="select a runaway for arrival"
