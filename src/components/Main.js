@@ -42,6 +42,7 @@ export default function Main({ onHandleSubmit }) {
           placeholder="ex. LK1234"
           aria-label="flight Number"
           maxLength={6}
+          required={true}
         ></input>
       </SectionFlightInfo>
       <AirportSelection>
@@ -53,6 +54,7 @@ export default function Main({ onHandleSubmit }) {
             placeholder="Departure airport ICAO ex. EDDH"
             aria-label="departure airport"
             maxLength={4}
+            required={true}
           ></input>
           <select
             aria-label="select a runaway for departure"
@@ -82,6 +84,7 @@ export default function Main({ onHandleSubmit }) {
             placeholder="Arrival airport ICAO ex. EDDB"
             aria-label="arrival airport"
             maxLength={4}
+            required={true}
           ></input>
           <select
             aria-label="select a runaway for arrival"
