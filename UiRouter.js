@@ -1,22 +1,19 @@
-//import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Main from "./components/Main";
 import Navigation from "./components/navigation/Navigation";
-import { Routes, Route } from "react-router-dom";
-import LiveFlights from "./components/live/LiveFlights";
 import SavedFlightPlans from "./components/saved/SavedFlightPlans";
-import FlightPlan from "./components/flightPlan/flightPlan";
+import LiveFlights from "./components/live/LiveFlights";
 import Error from "./pages/Error";
 import { useEffect, useState } from "react";
 import { saveToLocal, loadFromLocal } from "../src/components/LocalStorage";
-import initialData from "./components/initialData/initialData";
+import initialData from "./src/components/initialData/initialData";
 
-function App() {
+export default function UiRouter() {
   const [flightPlanData, setFlightPlanData] = useState();
   const [savedFlightPlanData, setSavedFlightPlanData] = useState(
     loadFromLocal("savedFlightPlanData") ?? initialData
   );
-
   useEffect(() => {
     saveToLocal("savedFlightPlanData", savedFlightPlanData);
   }, [savedFlightPlanData]);
@@ -74,7 +71,6 @@ function App() {
 
   return (
     <Container>
-      <AppHeader>Flight Planner</AppHeader>
       <MainStyled>
         <Routes>
           <Route
@@ -89,15 +85,6 @@ function App() {
               <SavedFlightPlans savedFlightPlanData={savedFlightPlanData} />
             }
           />
-          <Route
-            path="flightplan"
-            element={
-              <FlightPlan
-                flightPlanData={flightPlanData}
-                onSavePlan={savedFlightData}
-              />
-            }
-          />
           <Route path="*" element={<Error />} />
         </Routes>
       </MainStyled>
@@ -105,19 +92,9 @@ function App() {
     </Container>
   );
 }
-export default App;
 
 const Container = styled.div`
   text-align: center;
-`;
-
-const AppHeader = styled.header`
-  top: 0;
-  padding: 0.5rem;
-  background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
-  font-size: calc(20px + 2vmin);
-  color: black;
-  border-bottom: 1px solid black;
 `;
 
 const MainStyled = styled.main`
