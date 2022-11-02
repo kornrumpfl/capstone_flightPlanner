@@ -1,8 +1,7 @@
-//import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Main from "./components/Main";
 import Navigation from "./components/navigation/Navigation";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import LiveFlights from "./components/live/LiveFlights";
 import SavedFlightPlans from "./components/saved/SavedFlightPlans";
 import FlightPlan from "./components/flightPlan/flightPlan";
@@ -12,21 +11,23 @@ import { saveToLocal, loadFromLocal } from "../src/components/LocalStorage";
 import initialData from "./components/initialData/initialData";
 
 function App() {
+  const navigate = useNavigate();
   const [flightPlanData, setFlightPlanData] = useState();
   const [savedFlightPlanData, setSavedFlightPlanData] = useState(
     loadFromLocal("savedFlightPlanData") ?? initialData
   );
-
+  const location = useLocation();
   useEffect(() => {
     saveToLocal("savedFlightPlanData", savedFlightPlanData);
   }, [savedFlightPlanData]);
+
   //function for the save the flight plans
   function savedFlightData(
     id,
     departureAirport,
-    departureRunaway,
+    departureRunway,
     arrivalAirport,
-    arrivalRunaway,
+    arrivalRunway,
     flightDate,
     flightTime,
     aircraft,
@@ -37,9 +38,9 @@ function App() {
       {
         id: id,
         departureAirport: departureAirport,
-        departureRunaway: departureRunaway,
+        departureRunway: departureRunway,
         arrivalAirport: arrivalAirport,
-        arrivalRunaway: arrivalRunaway,
+        arrivalRunway: arrivalRunway,
         flightDate: flightDate,
         flightTime: flightTime,
         aircraft: aircraft,
@@ -51,9 +52,9 @@ function App() {
   function passFlightData(
     id,
     departureAirport,
-    departureRunaway,
+    departureRunway,
     arrivalAirport,
-    arrivalRunaway,
+    arrivalRunway,
     flightDate,
     flightTime,
     aircraft,
@@ -62,9 +63,9 @@ function App() {
     setFlightPlanData({
       id: id,
       departureAirport: departureAirport,
-      departureRunaway: departureRunaway,
+      departureRunway: departureRunway,
       arrivalAirport: arrivalAirport,
-      arrivalRunaway: arrivalRunaway,
+      arrivalRunway: arrivalRunway,
       flightDate: flightDate,
       flightTime: flightTime,
       aircraft: aircraft,
@@ -76,6 +77,16 @@ function App() {
     setSavedFlightPlanData(
       savedFlightPlanData.filter(({ id }) => flightPlanId !== id)
     );
+  }
+
+  function loadFlightPlan(flightPlanId) {
+    console.log(flightPlanId);
+    setFlightPlanData(
+      savedFlightPlanData.find(({ id }) => {
+        return flightPlanId === id;
+      })
+    );
+    navigate("/flightplan");
   }
 
   return (
@@ -95,6 +106,7 @@ function App() {
               <SavedFlightPlans
                 savedFlightPlanData={savedFlightPlanData}
                 onDelete={deleteFlightPlan}
+                loadFlightPlan={loadFlightPlan}
               />
             }
           />
@@ -110,7 +122,7 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </MainStyled>
-      <Navigation />
+      {location.pathname !== "/flightplan" ? <Navigation /> : null}
     </Container>
   );
 }

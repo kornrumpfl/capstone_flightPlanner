@@ -13,15 +13,14 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const position = [53.633354, 9.999303];
   const navigate = useNavigate();
   console.log(flightPlanData);
-
   function onHandleSavePlan(event) {
     event.preventDefault();
     onSavePlan(
       flightPlanData.id,
       flightPlanData.departureAirport,
-      flightPlanData.departureRunaway,
+      flightPlanData.departureRunaay,
       flightPlanData.arrivalAirport,
-      flightPlanData.arrivalRunaway,
+      flightPlanData.arrivalRunway,
       flightPlanData.flightDate,
       flightPlanData.flightTime,
       flightPlanData.aircraft,
@@ -40,15 +39,15 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
           <FligthPlanDetails>
             <DepartureLogo />
             <p>
-              Departure Airport: {flightPlanData.departureAirport} from Runaway{" "}
-              {flightPlanData.departureRunaway}
+              Departure Airport: {flightPlanData.departureAirport} from Runway{" "}
+              {flightPlanData.departureRunway}
             </p>
           </FligthPlanDetails>
           <FligthPlanDetails>
             <ArrivalLogo />
             <p>
-              Arrival Airport: {flightPlanData.arrivalAirport} at Runaway:{" "}
-              {flightPlanData.arrivalRunaway}
+              Arrival Airport: {flightPlanData.arrivalAirport} at Runway:{" "}
+              {flightPlanData.arrivalRunway}
             </p>
           </FligthPlanDetails>
 
@@ -116,7 +115,7 @@ const ButtonStyled = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 20px;
-  margin-bottom: 150px;
+
   button {
     background: none;
     border: none;

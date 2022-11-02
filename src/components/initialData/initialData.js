@@ -2,9 +2,9 @@ const savedInitial = [
   {
     id: "LK1234",
     departureAirport: "EDDH",
-    departureRunaway: "RW33",
+    departureRunway: "RW33",
     arrivalAirport: "EDDB",
-    arrivalRunaway: "RW07L",
+    arrivalRunway: "RW07L",
     flightDate: "2022-10-28",
     flightTime: "01:00",
     aircraft: "SF50",
@@ -13,9 +13,9 @@ const savedInitial = [
   {
     id: "LK4321",
     departureAirport: "EDDH",
-    departureRunaway: "RW23",
+    departureRunway: "RW23",
     arrivalAirport: "EDDB",
-    arrivalRunaway: "RW25L",
+    arrivalRunway: "RW25L",
     flightDate: "2022-10-26",
     flightTime: "02:00",
     aircraft: "B737",
