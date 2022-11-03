@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Runways from "./features/Runways";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
   const [departureRunway, setDepartureRunway] = useState();
   const [arrivalRunway, setArrivalRunway] = useState();
   const [aircraft, setAircraft] = useState();
+  const [departureAirport, setDepartureAirport] = useState();
 
   // function that disables date picking in the past dates
   function getDate() {
@@ -41,6 +43,10 @@ export default function Main({ onHandleSubmit }) {
     navigate("/flightplan");
   }
 
+  function selectDepartureRunway(runway) {
+    setDepartureRunway(`${runway}`);
+  }
+
   return (
     <InputFlightData onSubmit={onSubmit}>
       <SectionFlightInfo>
@@ -64,26 +70,14 @@ export default function Main({ onHandleSubmit }) {
             aria-label="departure airport"
             maxLength={4}
             required={true}
+            onChange={(e) => setDepartureAirport(e.target.value)}
           ></input>
-          <select
-            aria-label="select a runway for departure"
-            id="departureRunway"
-            onChange={(e) => setDepartureRunway(e.target.value)}
-          >
-            <option value="--" aria-label="initial state"></option>
-            <option value="RW05" aria-label="runway five">
-              RW 5
-            </option>
-            <option value="RW15" aria-label="runway fifteen">
-              RW 15
-            </option>
-            <option value="RW23" aria-label="runway twenty three">
-              RW 23
-            </option>
-            <option value="RW33" aria-label="runway thirty three">
-              RW 33
-            </option>
-          </select>
+          {departureAirport.length > 3 ? (
+            <Runways
+              icao={departureAirport}
+              selectedRunway={selectDepartureRunway}
+            />
+          ) : null}
         </Departure>
         <Arrival>
           <h2>Arrival</h2>

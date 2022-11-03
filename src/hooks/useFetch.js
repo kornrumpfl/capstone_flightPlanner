@@ -13,7 +13,6 @@ export default function useFetch(url) {
       const response = await fetch(url);
       const newData = await response.json();
       setData(newData.runways);
-      console.log("got here");
     } catch (error) {
       console.log(error);
     }
