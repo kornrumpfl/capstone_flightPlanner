@@ -18,7 +18,7 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
     onSavePlan(
       flightPlanData.id,
       flightPlanData.departureAirport,
-      flightPlanData.departureRunaay,
+      flightPlanData.departureRunway,
       flightPlanData.arrivalAirport,
       flightPlanData.arrivalRunway,
       flightPlanData.flightDate,
