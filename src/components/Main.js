@@ -4,9 +4,19 @@ import { useState } from "react";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
-  const [departureRunaway, setDepartureRunaway] = useState();
-  const [arrivalRunaway, setArrivalRunaway] = useState();
+  const [departureRunway, setDepartureRunway] = useState();
+  const [arrivalRunway, setArrivalRunway] = useState();
   const [aircraft, setAircraft] = useState();
+
+  // function that disables date picking in the past dates
+  function getDate() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
 
   function onSubmit(event) {
     event.preventDefault();
@@ -20,9 +30,9 @@ export default function Main({ onHandleSubmit }) {
     onHandleSubmit(
       id.value,
       departureAirport.value,
-      departureRunaway,
+      departureRunway,
       arrivalAirport.value,
-      arrivalRunaway,
+      arrivalRunway,
       flightDate.value,
       flightTime.value,
       aircraft,
@@ -56,21 +66,21 @@ export default function Main({ onHandleSubmit }) {
             required={true}
           ></input>
           <select
-            aria-label="select a runaway for departure"
-            id="departureRunaway"
-            onChange={(e) => setDepartureRunaway(e.target.value)}
+            aria-label="select a runway for departure"
+            id="departureRunway"
+            onChange={(e) => setDepartureRunway(e.target.value)}
           >
             <option value="--" aria-label="initial state"></option>
-            <option value="RW05" aria-label="runaway five">
+            <option value="RW05" aria-label="runway five">
               RW 5
             </option>
-            <option value="RW15" aria-label="runaway fifteen">
+            <option value="RW15" aria-label="runway fifteen">
               RW 15
             </option>
-            <option value="RW23" aria-label="runaway twenty three">
+            <option value="RW23" aria-label="runway twenty three">
               RW 23
             </option>
-            <option value="RW33" aria-label="runaway thirty three">
+            <option value="RW33" aria-label="runway thirty three">
               RW 33
             </option>
           </select>
@@ -86,21 +96,21 @@ export default function Main({ onHandleSubmit }) {
             required={true}
           ></input>
           <select
-            aria-label="select a runaway for arrival"
-            id="arrivalRunaway"
-            onChange={(e) => setArrivalRunaway(e.target.value)}
+            aria-label="select a runway for arrival"
+            id="arrivalRunway"
+            onChange={(e) => setArrivalRunway(e.target.value)}
           >
             <option value="--" aria-label="initial state"></option>
-            <option value="RW07L" aria-label="runaway seven left">
+            <option value="RW07L" aria-label="runway seven left">
               RW 7L
             </option>
-            <option value="RW25R" aria-label="runaway twenty five right">
+            <option value="RW25R" aria-label="runway twenty five right">
               RW 25R
             </option>
-            <option value="RW07R" aria-label="runaway seven right">
+            <option value="RW07R" aria-label="runway seven right">
               RW 7R
             </option>
-            <option value="RW25L" aria-label="runaway twenty five left">
+            <option value="RW25L" aria-label="runway twenty five left">
               RW 25L
             </option>
           </select>
@@ -109,7 +119,12 @@ export default function Main({ onHandleSubmit }) {
       <Time>
         <h2>Flight Departure Date/Time</h2>
         <div>
-          <input id="flightDate" type="date" aria-label="date" />
+          <input
+            id="flightDate"
+            type="date"
+            aria-label="date"
+            min={getDate()}
+          />
           <input id="flightTime" type="time" aria-label="time" />
         </div>
       </Time>

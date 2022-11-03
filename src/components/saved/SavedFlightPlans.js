@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import DeleteLogo from "../logos/deletelogo";
+import LoadLogo from "../logos/loadlogo";
 
 export default function SavedFlightPlans({
   savedFlightPlanData,
@@ -13,11 +14,14 @@ export default function SavedFlightPlans({
       {savedFlightPlanData.map((item) => {
         return (
           <ListOfFlightPlans>
-            <SavedItem onClick={loadFlightPlan}>
+            <SavedItem>
               <h3>{item.id}</h3>
               <p>
                 {item.departureAirport}-{item.arrivalAirport}
               </p>
+              <LoadFlightPlanLogo onClick={() => loadFlightPlan(item.id)}>
+                <LoadLogo />
+              </LoadFlightPlanLogo>
               <DeleteLogoStyled onClick={() => onDelete(item.id)}>
                 <DeleteLogo />
               </DeleteLogoStyled>
@@ -28,6 +32,25 @@ export default function SavedFlightPlans({
     </SavedFlightPlansSection>
   );
 }
+
+const LoadFlightPlanLogo = styled.button`
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+
+  svg {
+    width: 2.2em;
+    height: 2.2em;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-radius: 55%;
+    padding: 2px;
+  }
+`;
 
 const DeleteLogoStyled = styled.button`
   position: relative;
