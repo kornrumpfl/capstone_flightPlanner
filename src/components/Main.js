@@ -8,7 +8,8 @@ export default function Main({ onHandleSubmit }) {
   const [departureRunway, setDepartureRunway] = useState();
   const [arrivalRunway, setArrivalRunway] = useState();
   const [aircraft, setAircraft] = useState();
-  const [departureAirport, setDepartureAirport] = useState();
+  const [departureAirport, setDepartureAirport] = useState("");
+  const [arrivalAirport, setArrivalAirport] = useState("");
 
   // function that disables date picking in the past dates
   function getDate() {
@@ -24,16 +25,14 @@ export default function Main({ onHandleSubmit }) {
     event.preventDefault();
     const form = event.target;
     const { id } = form.elements;
-    const { departureAirport } = form.elements;
-    const { arrivalAirport } = form.elements;
     const { flightDate } = form.elements;
     const { flightTime } = form.elements;
     const { numberOfPassengers } = form.elements;
     onHandleSubmit(
       id.value,
-      departureAirport.value,
+      departureAirport,
       departureRunway,
-      arrivalAirport.value,
+      arrivalAirport,
       arrivalRunway,
       flightDate.value,
       flightTime.value,
@@ -45,6 +44,9 @@ export default function Main({ onHandleSubmit }) {
 
   function selectDepartureRunway(runway) {
     setDepartureRunway(`${runway}`);
+  }
+  function selectArrivalRunway(runway) {
+    setArrivalRunway(`${runway}`);
   }
 
   return (
@@ -72,6 +74,7 @@ export default function Main({ onHandleSubmit }) {
             required={true}
             onChange={(e) => setDepartureAirport(e.target.value)}
           ></input>
+          <p>Runway</p>
           {departureAirport.length > 3 ? (
             <Runways
               icao={departureAirport}
@@ -88,26 +91,15 @@ export default function Main({ onHandleSubmit }) {
             aria-label="arrival airport"
             maxLength={4}
             required={true}
+            onChange={(e) => setArrivalAirport(e.target.value)}
           ></input>
-          <select
-            aria-label="select a runway for arrival"
-            id="arrivalRunway"
-            onChange={(e) => setArrivalRunway(e.target.value)}
-          >
-            <option value="--" aria-label="initial state"></option>
-            <option value="RW07L" aria-label="runway seven left">
-              RW 7L
-            </option>
-            <option value="RW25R" aria-label="runway twenty five right">
-              RW 25R
-            </option>
-            <option value="RW07R" aria-label="runway seven right">
-              RW 7R
-            </option>
-            <option value="RW25L" aria-label="runway twenty five left">
-              RW 25L
-            </option>
-          </select>
+          <p>Runway</p>
+          {arrivalAirport.length > 3 ? (
+            <Runways
+              icao={arrivalAirport}
+              selectedRunway={selectArrivalRunway}
+            />
+          ) : null}
         </Arrival>
       </AirportSelection>
       <Time>
@@ -205,7 +197,7 @@ const Departure = styled.div`
     max-width: 40vw;
   }
   select {
-    margin-top: 3vw;
+    margin-top: 1vw;
   }
 `;
 
@@ -219,7 +211,7 @@ const Arrival = styled.div`
     max-width: 40vw;
   }
   select {
-    margin-top: 3vw;
+    margin-top: 1vw;
   }
 `;
 
