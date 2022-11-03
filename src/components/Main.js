@@ -11,16 +11,6 @@ export default function Main({ onHandleSubmit }) {
   const [departureAirport, setDepartureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
 
-  // function that disables date picking in the past dates
-  function getDate() {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-
-    return `${year}-${month}-${day}`;
-  }
-
   function onSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -109,7 +99,7 @@ export default function Main({ onHandleSubmit }) {
             id="flightDate"
             type="date"
             aria-label="date"
-            min={getDate()}
+            min={new Date().toISOString().split("T")[0]}
           />
           <input id="flightTime" type="time" aria-label="time" />
         </div>
