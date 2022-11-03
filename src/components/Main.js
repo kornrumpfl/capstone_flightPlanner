@@ -43,10 +43,10 @@ export default function Main({ onHandleSubmit }) {
   }
 
   function selectDepartureRunway(runway) {
-    setDepartureRunway(`${runway}`);
+    setDepartureRunway(runway);
   }
   function selectArrivalRunway(runway) {
-    setArrivalRunway(`${runway}`);
+    setArrivalRunway(runway);
   }
 
   return (
