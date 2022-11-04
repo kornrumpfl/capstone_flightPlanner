@@ -12,7 +12,6 @@ import SavedLogo from "../logos/savedlogo";
 export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const position = [53.633354, 9.999303];
   const navigate = useNavigate();
-  console.log(flightPlanData);
   function onHandleSavePlan(event) {
     event.preventDefault();
     onSavePlan(
@@ -28,7 +27,6 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
     );
     navigate("/saved");
   }
-
   return (
     <div>
       <FlightPlanPage>
@@ -71,10 +69,11 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
           center={position}
           zoom={10}
           style={{ height: 400, width: "85%" }}
+          scrollWheelZoom={false}
         >
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url={`https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_CUSTOM_MAP_KEY}`}
           />
         </MapContainer>
       </FlightPlanPage>
