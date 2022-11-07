@@ -10,6 +10,8 @@ export default function Main({ onHandleSubmit }) {
   const [aircraft, setAircraft] = useState();
   const [departureAirport, setDepartureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
+  const [departureLocation, setDepartureLocation] = useState();
+  const [arrivalLocation, setArrivalLocation] = useState();
 
   function onSubmit(event) {
     event.preventDefault();
@@ -27,16 +29,20 @@ export default function Main({ onHandleSubmit }) {
       flightDate.value,
       flightTime.value,
       aircraft,
-      numberOfPassengers.value
+      numberOfPassengers.value,
+      departureLocation,
+      arrivalLocation
     );
     navigate("/flightplan");
   }
 
-  function selectDepartureRunway(runway) {
+  function selectDepartureRunway(runway, lat, lon) {
     setDepartureRunway(runway);
+    setDepartureLocation({ lat, lon });
   }
-  function selectArrivalRunway(runway) {
+  function selectArrivalRunway(runway, lat, lon) {
     setArrivalRunway(runway);
+    setArrivalLocation({ lat, lon });
   }
 
   return (
