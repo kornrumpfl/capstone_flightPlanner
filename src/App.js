@@ -38,17 +38,17 @@ function App() {
     setSavedFlightPlanData([
       ...savedFlightPlanData,
       {
-        id: id,
-        departureAirport: departureAirport,
-        departureRunway: departureRunway,
-        arrivalAirport: arrivalAirport,
-        arrivalRunway: arrivalRunway,
-        flightDate: flightDate,
-        flightTime: flightTime,
-        aircraft: aircraft,
-        numberOfPassengers: numberOfPassengers,
-        departureLocation: departureLocation,
-        arrivalLocation: arrivalLocation,
+        id,
+        departureAirport,
+        departureRunway,
+        arrivalAirport,
+        arrivalRunway,
+        flightDate,
+        flightTime,
+        aircraft,
+        numberOfPassengers,
+        departureLocation,
+        arrivalLocation,
       },
     ]);
   }
@@ -67,17 +67,17 @@ function App() {
     arrivalLocation
   ) {
     setFlightPlanData({
-      id: id,
-      departureAirport: departureAirport,
-      departureRunway: departureRunway,
-      arrivalAirport: arrivalAirport,
-      arrivalRunway: arrivalRunway,
-      flightDate: flightDate,
-      flightTime: flightTime,
-      aircraft: aircraft,
-      numberOfPassengers: numberOfPassengers,
-      departureLocation: departureLocation,
-      arrivalLocation: arrivalLocation,
+      id,
+      departureAirport,
+      departureRunway,
+      arrivalAirport,
+      arrivalRunway,
+      flightDate,
+      flightTime,
+      aircraft,
+      numberOfPassengers,
+      departureLocation,
+      arrivalLocation,
     });
   }
 
