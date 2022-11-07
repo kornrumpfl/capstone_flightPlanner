@@ -1,11 +1,17 @@
 import useFetch from "../../hooks/useFetch";
 
-export default function Runways({ icao, selectedRunway }) {
+export default function Runways({ icao, selectedRunwayPlusLocation }) {
   const URL = `https://api.flightplandatabase.com/nav/airport/${icao}`;
   const [dataFetched, setDataFetched] = useFetch(URL);
 
   function onSelect(event) {
-    selectedRunway(event.target.value);
+    const airportLocationLat = dataFetched.lat;
+    const airportLocationLon = dataFetched.lon;
+    selectedRunwayPlusLocation(
+      event.target.value,
+      airportLocationLat,
+      airportLocationLon
+    );
   }
 
   return (
