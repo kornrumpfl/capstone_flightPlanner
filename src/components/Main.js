@@ -10,16 +10,8 @@ export default function Main({ onHandleSubmit }) {
   const [aircraft, setAircraft] = useState();
   const [departureAirport, setDepartureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
-
-  // function that disables date picking in the past dates
-  function getDate() {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-
-    return `${year}-${month}-${day}`;
-  }
+  const [departureLocation, setDepartureLocation] = useState();
+  const [arrivalLocation, setArrivalLocation] = useState();
 
   function onSubmit(event) {
     event.preventDefault();
@@ -37,16 +29,20 @@ export default function Main({ onHandleSubmit }) {
       flightDate.value,
       flightTime.value,
       aircraft,
-      numberOfPassengers.value
+      numberOfPassengers.value,
+      departureLocation,
+      arrivalLocation
     );
     navigate("/flightplan");
   }
 
-  function selectDepartureRunway(runway) {
+  function selectDepartureRunway(runway, lat, lon) {
     setDepartureRunway(runway);
+    setDepartureLocation({ lat, lon });
   }
-  function selectArrivalRunway(runway) {
+  function selectArrivalRunway(runway, lat, lon) {
     setArrivalRunway(runway);
+    setArrivalLocation({ lat, lon });
   }
 
   return (
@@ -78,7 +74,7 @@ export default function Main({ onHandleSubmit }) {
           {departureAirport.length > 3 ? (
             <Runways
               icao={departureAirport}
-              selectedRunway={selectDepartureRunway}
+              selectedRunwayPlusLocation={selectDepartureRunway}
             />
           ) : null}
         </Departure>
@@ -97,7 +93,7 @@ export default function Main({ onHandleSubmit }) {
           {arrivalAirport.length > 3 ? (
             <Runways
               icao={arrivalAirport}
-              selectedRunway={selectArrivalRunway}
+              selectedRunwayPlusLocation={selectArrivalRunway}
             />
           ) : null}
         </Arrival>
@@ -109,7 +105,7 @@ export default function Main({ onHandleSubmit }) {
             id="flightDate"
             type="date"
             aria-label="date"
-            min={getDate()}
+            min={new Date().toISOString().split("T")[0]}
           />
           <input id="flightTime" type="time" aria-label="time" />
         </div>
