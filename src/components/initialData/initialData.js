@@ -9,6 +9,8 @@ const savedInitial = [
     flightTime: "01:00",
     aircraft: "SF50",
     numberOfPassengers: 4,
+    arrivalLocation: { lat: 52.3623, lon: 13.5007 },
+    departureLocation: { lat: 53.6337, lon: 9.98526 },
   },
   {
     id: "LK4321",
@@ -20,6 +22,8 @@ const savedInitial = [
     flightTime: "02:00",
     aircraft: "B737",
     numberOfPassengers: 240,
+    arrivalLocation: { lat: 52.3623, lon: 13.5007 },
+    departureLocation: { lat: 53.6337, lon: 9.98526 },
   },
 ];
 
