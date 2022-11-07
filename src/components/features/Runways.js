@@ -5,13 +5,11 @@ export default function Runways({ icao, selectedRunwayPlusLocation }) {
   const [dataFetched, setDataFetched] = useFetch(URL);
 
   function onSelect(event) {
+    event.preventDefault();
+    const runway = event.target.value;
     const airportLocationLat = dataFetched.lat;
     const airportLocationLon = dataFetched.lon;
-    selectedRunwayPlusLocation(
-      event.target.value,
-      airportLocationLat,
-      airportLocationLon
-    );
+    selectedRunwayPlusLocation(runway, airportLocationLat, airportLocationLon);
   }
 
   return (

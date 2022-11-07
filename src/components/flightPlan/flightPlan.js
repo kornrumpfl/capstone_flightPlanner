@@ -12,6 +12,7 @@ import SavedLogo from "../logos/savedlogo";
 export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const position = [53.633354, 9.999303];
   const navigate = useNavigate();
+  console.log(flightPlanData);
   function onHandleSavePlan(event) {
     event.preventDefault();
     onSavePlan(
@@ -23,7 +24,9 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
       flightPlanData.flightDate,
       flightPlanData.flightTime,
       flightPlanData.aircraft,
-      flightPlanData.numberOfPassengers
+      flightPlanData.numberOfPassengers,
+      flightPlanData.departureLocation,
+      flightPlanData.arrivalLocation
     );
     navigate("/saved");
   }

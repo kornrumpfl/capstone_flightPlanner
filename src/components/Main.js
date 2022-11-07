@@ -74,7 +74,7 @@ export default function Main({ onHandleSubmit }) {
           {departureAirport.length > 3 ? (
             <Runways
               icao={departureAirport}
-              selectedRunway={selectDepartureRunway}
+              selectedRunwayPlusLocation={selectDepartureRunway}
             />
           ) : null}
         </Departure>
@@ -93,7 +93,7 @@ export default function Main({ onHandleSubmit }) {
           {arrivalAirport.length > 3 ? (
             <Runways
               icao={arrivalAirport}
-              selectedRunway={selectArrivalRunway}
+              selectedRunwayPlusLocation={selectArrivalRunway}
             />
           ) : null}
         </Arrival>
