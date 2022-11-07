@@ -23,7 +23,6 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const arrivalLocation = flightPlanData.arrivalLocation;
   const polyline = [departureLocation, arrivalLocation];
   const blackOptions = { color: "black" };
-  console.log(flightPlanData);
 
   function onHandleSavePlan(event) {
     event.preventDefault();
