@@ -45,9 +45,6 @@ export default function Main({ onHandleSubmit }) {
     setArrivalRunway(runway);
     setArrivalLocation({ lat, lon });
   }
-  function selectAircraft(airplane) {
-    setAircraft(airplane);
-  }
 
   return (
     <InputFlightData onSubmit={onSubmit}>
@@ -116,7 +113,7 @@ export default function Main({ onHandleSubmit }) {
       </Time>
       <AircraftStyle>
         <h2>Aircraft Model</h2>
-        <Aircraft selectedAircraft={selectAircraft} />
+        <Aircraft onSelectAircraft={(airplane) => setAircraft(airplane)} />
       </AircraftStyle>
       <NumberOfPassengers>
         <h2>N° of Passengers</h2>

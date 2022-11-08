@@ -1,13 +1,9 @@
 import React from "react";
 import aircraftData from "../initialData/aircraftData";
 
-function Aircraft({ selectedAircraft }) {
-  function onSelect(event) {
-    selectedAircraft(event.target.value);
-  }
-
+function Aircraft({ onSelectAircraft }) {
   return (
-    <select onChange={onSelect}>
+    <select onChange={(e) => onSelectAircraft(e.target.value)}>
       <option value="--" aria-label="initial state"></option>
       {aircraftData?.map((item) => {
         return <option>{item.name}</option>;
