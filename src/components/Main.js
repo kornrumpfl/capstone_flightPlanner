@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Runways from "./features/Runways";
+import Aircraft from "./features/Aircraft";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
@@ -43,6 +44,9 @@ export default function Main({ onHandleSubmit }) {
   function selectArrivalRunway(runway, lat, lon) {
     setArrivalRunway(runway);
     setArrivalLocation({ lat, lon });
+  }
+  function selectAircraft(airplane) {
+    setAircraft(airplane);
   }
 
   return (
@@ -110,31 +114,10 @@ export default function Main({ onHandleSubmit }) {
           <input id="flightTime" type="time" aria-label="time" />
         </div>
       </Time>
-      <Aircraft>
+      <AircraftStyle>
         <h2>Aircraft Model</h2>
-        <select
-          aria-label="select a aircraft model"
-          id="Aircraft"
-          onChange={(e) => setAircraft(e.target.value)}
-        >
-          <option value="--" aria-label="initial state"></option>
-          <option value="C172" aria-label="cessna 172R">
-            CESSNA 172R
-          </option>
-          <option value="B738" aria-label="boing 737">
-            B737-800
-          </option>
-          <option value="B74F" aria-label="boing 747">
-            B747-400F
-          </option>
-          <option value="B77L" aria-label="boing 777">
-            B777-200LR
-          </option>
-          <option value="SF50" aria-label="vision jet">
-            VISION JET
-          </option>
-        </select>
-      </Aircraft>
+        <Aircraft selectedAircraft={selectAircraft} />
+      </AircraftStyle>
       <NumberOfPassengers>
         <h2>N° of Passengers</h2>
         <input
@@ -226,7 +209,7 @@ const Time = styled.fieldset`
   }
 `;
 
-const Aircraft = styled.fieldset`
+const AircraftStyle = styled.fieldset`
   border: none;
   display: flex;
   flex-direction: column;
