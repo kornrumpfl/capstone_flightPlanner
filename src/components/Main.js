@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Runways from "./features/Runways";
+import Aircraft from "./features/Aircraft";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ export default function Main({ onHandleSubmit }) {
             aria-label="departure airport"
             maxLength={4}
             required={true}
-            onChange={(e) => setDepartureAirport(e.target.value)}
+            onChange={(event) => setDepartureAirport(event.target.value)}
           ></input>
           <p>Runway</p>
           {departureAirport.length > 3 ? (
@@ -87,7 +88,7 @@ export default function Main({ onHandleSubmit }) {
             aria-label="arrival airport"
             maxLength={4}
             required={true}
-            onChange={(e) => setArrivalAirport(e.target.value)}
+            onChange={(event) => setArrivalAirport(event.target.value)}
           ></input>
           <p>Runway</p>
           {arrivalAirport.length > 3 ? (
@@ -110,31 +111,10 @@ export default function Main({ onHandleSubmit }) {
           <input id="flightTime" type="time" aria-label="time" />
         </div>
       </Time>
-      <Aircraft>
+      <AircraftStyle>
         <h2>Aircraft Model</h2>
-        <select
-          aria-label="select a aircraft model"
-          id="Aircraft"
-          onChange={(e) => setAircraft(e.target.value)}
-        >
-          <option value="--" aria-label="initial state"></option>
-          <option value="C172" aria-label="cessna 172R">
-            CESSNA 172R
-          </option>
-          <option value="B738" aria-label="boing 737">
-            B737-800
-          </option>
-          <option value="B74F" aria-label="boing 747">
-            B747-400F
-          </option>
-          <option value="B77L" aria-label="boing 777">
-            B777-200LR
-          </option>
-          <option value="SF50" aria-label="vision jet">
-            VISION JET
-          </option>
-        </select>
-      </Aircraft>
+        <Aircraft onSelectAircraft={(airplane) => setAircraft(airplane)} />
+      </AircraftStyle>
       <NumberOfPassengers>
         <h2>N° of Passengers</h2>
         <input
@@ -226,7 +206,7 @@ const Time = styled.fieldset`
   }
 `;
 
-const Aircraft = styled.fieldset`
+const AircraftStyle = styled.fieldset`
   border: none;
   display: flex;
   flex-direction: column;
