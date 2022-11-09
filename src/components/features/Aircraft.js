@@ -3,7 +3,7 @@ import aircraftData from "../initialData/aircraftData";
 
 function Aircraft({ onSelectAircraft }) {
   return (
-    <select onChange={(e) => onSelectAircraft(e.target.value)}>
+    <select onChange={(plane) => onSelectAircraft(plane.target.value)}>
       <option value="--" aria-label="initial state"></option>
       {aircraftData?.map((item) => {
         return <option>{item.name}</option>;
