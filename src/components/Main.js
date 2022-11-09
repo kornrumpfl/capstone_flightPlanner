@@ -69,7 +69,7 @@ export default function Main({ onHandleSubmit }) {
             aria-label="departure airport"
             maxLength={4}
             required={true}
-            onChange={(e) => setDepartureAirport(e.target.value)}
+            onChange={(event) => setDepartureAirport(event.target.value)}
           ></input>
           <p>Runway</p>
           {departureAirport.length > 3 ? (
@@ -88,7 +88,7 @@ export default function Main({ onHandleSubmit }) {
             aria-label="arrival airport"
             maxLength={4}
             required={true}
-            onChange={(e) => setArrivalAirport(e.target.value)}
+            onChange={(event) => setArrivalAirport(event.target.value)}
           ></input>
           <p>Runway</p>
           {arrivalAirport.length > 3 ? (
