@@ -139,9 +139,13 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
           {departureLocation && arrivalLocation ? (
             <ChangeView center={GetNewCenter()} zoom={getNewZoom()} />
           ) : null}
-          <TileLayer
+          {/* <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url={`https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_CUSTOM_MAP_KEY}`}
+          /> */}
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {departureLocation ? (
             <Marker position={departureLocation} icon={GetIcon(40)}></Marker>

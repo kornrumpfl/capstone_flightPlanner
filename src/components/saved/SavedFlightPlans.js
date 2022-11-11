@@ -15,10 +15,17 @@ export default function SavedFlightPlans({
         return (
           <ListOfFlightPlans>
             <SavedItem>
-              <h3>{item.id}</h3>
-              <p>
-                {item.departureAirport}-{item.arrivalAirport}
-              </p>
+              <Block>
+                <Title>
+                  <h3>{item.id}</h3>
+                  <p>
+                    {item.departureAirport}-{item.arrivalAirport}
+                  </p>
+                </Title>
+                <span>
+                  {item.flightDate}-{item.flightTime}
+                </span>
+              </Block>
               <LoadFlightPlanLogo onClick={() => loadFlightPlan(item.id)}>
                 <LoadLogo />
               </LoadFlightPlanLogo>
@@ -91,7 +98,7 @@ const SavedItem = styled.li`
   background-color: lightblue;
   border-radius: 10px;
   list-style-type: none;
-  width: 20rem;
+  width: 25rem;
 
   h3 {
     text-align: start;
@@ -99,4 +106,16 @@ const SavedItem = styled.li`
   p {
     text-align: center;
   }
+`;
+
+const Title = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+`;
+
+const Block = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
