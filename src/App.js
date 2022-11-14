@@ -37,7 +37,6 @@ function App() {
   ) {
     if (savedFlightPlanData.find((item) => id === item.id)) {
       const myId = savedFlightPlanData.findIndex((item) => item.id === id);
-      console.log(myId);
       savedFlightPlanData[myId].flightDate = flightDate;
       savedFlightPlanData[myId].flightTime = flightTime;
       setSavedFlightPlanData([...savedFlightPlanData]);

@@ -121,7 +121,7 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
               onChange={(event) => setFlightDate(event.target.value)}
             />
             <input
-              id="flightTimefP"
+              id="flightTimeFP"
               type="time"
               aria-label="time"
               defaultValue={flightPlanData.flightTime}

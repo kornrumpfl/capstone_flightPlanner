@@ -125,8 +125,8 @@ const Block = styled.div`
   display: flex;
   flex-direction: column;
   span {
-    margin-top: 0px;
-    padding-top: 0px;
+    margin-top: 0;
+    padding-top: 0;
     margin-bottom: 5px;
   }
 `;
