@@ -101,22 +101,16 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
         <FlightPlanInformation>
           <h2>Flight Plan Information</h2>
           <p>Flight Number: {flightPlanData.id}</p>
-
           <FligthPlanDetails>
             <DepartureLogo />
-            <p>
-              Departure Airport: {flightPlanData.departureAirport} from Runway{" "}
-              {flightPlanData.departureRunway}
-            </p>
+            <p>Departure Airport: {flightPlanData.departureAirport}</p>
+            <p>from Runway:{flightPlanData.departureRunway}</p>
           </FligthPlanDetails>
           <FligthPlanDetails>
             <ArrivalLogo />
-            <p>
-              Arrival Airport: {flightPlanData.arrivalAirport} at Runway:{" "}
-              {flightPlanData.arrivalRunway}
-            </p>
+            <p>Arrival Airport: {flightPlanData.arrivalAirport}</p>
+            <p>at Runway: {flightPlanData.arrivalRunway}</p>
           </FligthPlanDetails>
-
           <FligthPlanDetails>
             <DateandTimeLogo />
             <input
