@@ -35,22 +35,30 @@ function App() {
     departureLocation,
     arrivalLocation
   ) {
-    setSavedFlightPlanData([
-      ...savedFlightPlanData,
-      {
-        id,
-        departureAirport,
-        departureRunway,
-        arrivalAirport,
-        arrivalRunway,
-        flightDate,
-        flightTime,
-        aircraft,
-        numberOfPassengers,
-        departureLocation,
-        arrivalLocation,
-      },
-    ]);
+    if (savedFlightPlanData.find((item) => id === item.id)) {
+      const myId = savedFlightPlanData.findIndex((item) => item.id === id);
+      console.log(myId);
+      savedFlightPlanData[myId].flightDate = flightDate;
+      savedFlightPlanData[myId].flightTime = flightTime;
+      setSavedFlightPlanData([...savedFlightPlanData]);
+    } else {
+      setSavedFlightPlanData([
+        ...savedFlightPlanData,
+        {
+          id,
+          departureAirport,
+          departureRunway,
+          arrivalAirport,
+          arrivalRunway,
+          flightDate,
+          flightTime,
+          aircraft,
+          numberOfPassengers,
+          departureLocation,
+          arrivalLocation,
+        },
+      ]);
+    }
   }
   //function to pass inputs value into the flight plan page
   function passFlightData(
