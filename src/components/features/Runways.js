@@ -16,7 +16,7 @@ export default function Runways({ icao, selectedRunwayPlusLocation }) {
     <select onChange={onSelect}>
       <option value="--" aria-label="initial state"></option>
       {dataFetched?.runways?.map((item) => {
-        return <option>{item.ident}</option>;
+        return <option value={item.ident}>{item.ident}</option>;
       })}
     </select>
   );

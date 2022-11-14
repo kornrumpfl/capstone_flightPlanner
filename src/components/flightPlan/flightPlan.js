@@ -14,6 +14,7 @@ import PassengersLogo from "../logos/passengerslogo";
 import HomeLogo from "../logos/homelogo";
 import SavedLogo from "../logos/savedlogo";
 import L from "leaflet";
+import { useState } from "react";
 
 export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const position = [53.633354, 9.999303];
@@ -21,6 +22,8 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const departureLocation = flightPlanData.departureLocation;
   const arrivalLocation = flightPlanData.arrivalLocation;
   const polyline = [departureLocation, arrivalLocation];
+  const [flightDate, setFlightDate] = useState();
+  const [flightTime, setFlightTime] = useState();
   const blackOptions = { color: "black" };
 
   function onHandleSavePlan(event) {
@@ -31,8 +34,8 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
       flightPlanData.departureRunway,
       flightPlanData.arrivalAirport,
       flightPlanData.arrivalRunway,
-      flightPlanData.flightDate,
-      flightPlanData.flightTime,
+      flightDate ?? flightPlanData.flightDate,
+      flightTime ?? flightPlanData.flightTime,
       flightPlanData.aircraft,
       flightPlanData.numberOfPassengers,
       flightPlanData.departureLocation,
@@ -98,28 +101,32 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
         <FlightPlanInformation>
           <h2>Flight Plan Information</h2>
           <p>Flight Number: {flightPlanData.id}</p>
-
           <FligthPlanDetails>
             <DepartureLogo />
-            <p>
-              Departure Airport: {flightPlanData.departureAirport} from Runway{" "}
-              {flightPlanData.departureRunway}
-            </p>
+            <p>Departure Airport: {flightPlanData.departureAirport}</p>
+            <p>from Runway:{flightPlanData.departureRunway}</p>
           </FligthPlanDetails>
           <FligthPlanDetails>
             <ArrivalLogo />
-            <p>
-              Arrival Airport: {flightPlanData.arrivalAirport} at Runway:{" "}
-              {flightPlanData.arrivalRunway}
-            </p>
+            <p>Arrival Airport: {flightPlanData.arrivalAirport}</p>
+            <p>at Runway: {flightPlanData.arrivalRunway}</p>
           </FligthPlanDetails>
-
           <FligthPlanDetails>
             <DateandTimeLogo />
-            <p>
-              Flight Date: {flightPlanData.flightDate} Takeoff Booked Time:{" "}
-              {flightPlanData.flightTime}
-            </p>
+            <input
+              id="flightDateFP"
+              type="date"
+              defaultValue={flightPlanData.flightDate}
+              min={new Date().toISOString().split("T")[0]}
+              onChange={(event) => setFlightDate(event.target.value)}
+            />
+            <input
+              id="flightTimeFP"
+              type="time"
+              aria-label="time"
+              defaultValue={flightPlanData.flightTime}
+              onChange={(event) => setFlightTime(event.target.value)}
+            />
           </FligthPlanDetails>
 
           <p>Aircraft model: {flightPlanData.aircraft}</p>
@@ -139,9 +146,13 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
           {departureLocation && arrivalLocation ? (
             <ChangeView center={GetNewCenter()} zoom={getNewZoom()} />
           ) : null}
-          <TileLayer
+          {/* <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url={`https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_CUSTOM_MAP_KEY}`}
+          /> */}
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {departureLocation ? (
             <Marker position={departureLocation} icon={GetIcon(40)}></Marker>
