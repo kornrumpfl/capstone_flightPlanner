@@ -4,6 +4,7 @@ import {
   Marker,
   Polyline,
   useMap,
+  Popup,
 } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -15,6 +16,7 @@ import HomeLogo from "../logos/homelogo";
 import SavedLogo from "../logos/savedlogo";
 import L from "leaflet";
 import { useState } from "react";
+import AirplaneLogo from "../logos/airplanelogo";
 
 export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const position = [53.633354, 9.999303];
@@ -25,7 +27,8 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const [flightDate, setFlightDate] = useState();
   const [flightTime, setFlightTime] = useState();
   const blackOptions = { color: "black" };
-
+  console.log(arrivalLocation);
+  console.log(departureLocation);
   function onHandleSavePlan(event) {
     event.preventDefault();
     onSavePlan(
@@ -100,41 +103,49 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
       <FlightPlanPage>
         <FlightPlanInformation>
           <h2>Flight Plan Information</h2>
-          <p>Flight Number: {flightPlanData.id}</p>
-          <FligthPlanDetails>
+          <span>Flight Number: {flightPlanData.id}</span>
+          <FligthPlanDetailsDeparture>
             <DepartureLogo />
-            <p>Departure Airport: {flightPlanData.departureAirport}</p>
-            <p>from Runway:{flightPlanData.departureRunway}</p>
-          </FligthPlanDetails>
-          <FligthPlanDetails>
+            <div>
+              <p>Departure Airport: {flightPlanData.departureAirport}</p>
+              <p>from Runway:{flightPlanData.departureRunway}</p>
+            </div>
+          </FligthPlanDetailsDeparture>
+          <FligthPlanDetailsArrival>
             <ArrivalLogo />
-            <p>Arrival Airport: {flightPlanData.arrivalAirport}</p>
-            <p>at Runway: {flightPlanData.arrivalRunway}</p>
-          </FligthPlanDetails>
-          <FligthPlanDetails>
+            <div>
+              <p>Arrival Airport: {flightPlanData.arrivalAirport}</p>
+              <p>at Runway: {flightPlanData.arrivalRunway}</p>
+            </div>
+          </FligthPlanDetailsArrival>
+          <FligthPlanDetailsTime>
             <DateandTimeLogo />
-            <input
-              id="flightDateFP"
-              type="date"
-              defaultValue={flightPlanData.flightDate}
-              min={new Date().toISOString().split("T")[0]}
-              onChange={(event) => setFlightDate(event.target.value)}
-            />
-            <input
-              id="flightTimeFP"
-              type="time"
-              aria-label="time"
-              defaultValue={flightPlanData.flightTime}
-              onChange={(event) => setFlightTime(event.target.value)}
-            />
-          </FligthPlanDetails>
-
-          <p>Aircraft model: {flightPlanData.aircraft}</p>
-
-          <FligthPlanDetails>
+            <div>
+              <input
+                id="flightDateFP"
+                type="date"
+                defaultValue={flightPlanData.flightDate}
+                min={new Date().toISOString().split("T")[0]}
+                onChange={(event) => setFlightDate(event.target.value)}
+              />
+              <br />
+              <input
+                id="flightTimeFP"
+                type="time"
+                aria-label="time"
+                defaultValue={flightPlanData.flightTime}
+                onChange={(event) => setFlightTime(event.target.value)}
+              />
+            </div>
+          </FligthPlanDetailsTime>
+          <FligthPlanDetailsPass>
             <PassengersLogo />
             <p>Number of Passenger: {flightPlanData.numberOfPassengers}</p>
-          </FligthPlanDetails>
+          </FligthPlanDetailsPass>
+          <FlightPlanDetailsAircraf>
+            <AirplaneLogo />
+            <p>Aircraft model: {flightPlanData.aircraft}</p>
+          </FlightPlanDetailsAircraf>
         </FlightPlanInformation>
         <MapContainer
           className="plan-map leaflet-container leaflet-touch leaflet-safari leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -144,7 +155,11 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
           scrollWheelZoom={false}
         >
           {departureLocation && arrivalLocation ? (
-            <ChangeView center={GetNewCenter()} zoom={getNewZoom()} />
+            window.innerWidth < 800 ? (
+              <ChangeView center={GetNewCenter()} zoom={getNewZoom() - 1} />
+            ) : (
+              <ChangeView center={GetNewCenter()} zoom={getNewZoom()} />
+            )
           ) : null}
           {/* <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -155,10 +170,26 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {departureLocation ? (
-            <Marker position={departureLocation} icon={GetIcon(40)}></Marker>
+            <Marker
+              position={[departureLocation.lat, departureLocation.lon]}
+              icon={GetIcon(40)}
+            >
+              <Popup>
+                {flightPlanData.departureAirport} <br />{" "}
+                {departureLocation.lat + ", " + departureLocation.lon}
+              </Popup>
+            </Marker>
           ) : null}
           {arrivalLocation ? (
-            <Marker position={arrivalLocation} icon={GetIcon(40)}></Marker>
+            <Marker
+              position={[arrivalLocation.lat, arrivalLocation.lon]}
+              icon={GetIcon(40)}
+            >
+              <Popup>
+                {flightPlanData.arrivalAirport} <br />{" "}
+                {arrivalLocation.lat + ", " + arrivalLocation.lon}
+              </Popup>
+            </Marker>
           ) : null}
           {departureLocation && arrivalLocation ? (
             <Polyline pathOptions={blackOptions} positions={polyline} />
@@ -186,15 +217,101 @@ const FlightPlanInformation = styled.section`
   }
 `;
 
-const FligthPlanDetails = styled.div`
-  align-items: center;
-`;
-
 const FlightPlanPage = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  p {
+    text-align: start;
+  }
+`;
+
+const FligthPlanDetailsDeparture = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "svg info";
+  align-items: center;
+  padding: 0.5em;
+  svg {
+    grid-area: svg;
+    justify-self: start;
+    align-self: center;
+  }
+  div {
+    grid-area: info;
+    align-self: center;
+    justify-self: start;
+  }
+`;
+
+const FligthPlanDetailsArrival = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "svg info";
+  align-items: center;
+  padding: 0.5em;
+  svg {
+    grid-area: svg;
+    justify-self: start;
+    align-self: center;
+  }
+  div {
+    grid-area: info;
+    align-self: center;
+    justify-self: start;
+    justify-items: start;
+  }
+`;
+const FligthPlanDetailsTime = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "svg info";
+  align-items: center;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  svg {
+    grid-area: svg;
+    justify-self: start;
+    align-self: center;
+  }
+  div {
+    grid-area: info;
+    align-self: center;
+    justify-self: start;
+  }
+`;
+const FlightPlanDetailsAircraf = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "svg info";
+  align-items: center;
+  padding: 0.5em;
+  svg {
+    grid-area: svg;
+    justify-self: start;
+    align-self: center;
+  }
+  p {
+    grid-area: info;
+    align-self: center;
+    justify-self: start;
+  }
+`;
+const FligthPlanDetailsPass = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "svg info";
+  align-items: center;
+  padding: 0.5em;
+  svg {
+    grid-area: svg;
+  }
+  p {
+    grid-area: info;
+    align-self: center;
+    justify-self: center;
+  }
 `;
 
 const ButtonStyled = styled.div`
@@ -202,6 +319,7 @@ const ButtonStyled = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 20px;
+  margin-bottom: 20px;
 
   button {
     background: none;
