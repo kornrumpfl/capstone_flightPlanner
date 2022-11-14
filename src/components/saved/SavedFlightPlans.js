@@ -98,7 +98,7 @@ const SavedItem = styled.li`
   background-color: lightblue;
   border-radius: 10px;
   list-style-type: none;
-  width: 25rem;
+  width: 80vw;
 
   h3 {
     text-align: start;
