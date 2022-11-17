@@ -27,8 +27,6 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const [flightDate, setFlightDate] = useState();
   const [flightTime, setFlightTime] = useState();
   const blackOptions = { color: "black" };
-  console.log(arrivalLocation);
-  console.log(departureLocation);
   function onHandleSavePlan(event) {
     event.preventDefault();
     onSavePlan(
