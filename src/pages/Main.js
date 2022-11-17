@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Runways from "./features/Runways";
-import Aircraft from "./features/Aircraft";
+import Runways from "../components/features/Runways";
+import Aircraft from "../components/features/Aircraft";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
