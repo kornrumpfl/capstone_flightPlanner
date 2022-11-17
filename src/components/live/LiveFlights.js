@@ -19,11 +19,13 @@ export default function LiveFlights() {
   return (
     <Block>
       <AirportSelect selectedAirport={onSelect} />
-      {airportLocationCord ? (
-        airportLocationCord.lat !== 0 ? (
-          <MyMap airportLocationCord={airportLocationCord} />
-        ) : null
-      ) : null}
+      <div>
+        {airportLocationCord ? (
+          airportLocationCord.lat !== 0 ? (
+            <MyMap airportLocationCord={airportLocationCord} />
+          ) : null
+        ) : null}
+      </div>
     </Block>
   );
 }
@@ -36,5 +38,8 @@ const Block = styled.section`
     width: 60vw;
     margin: 20px;
     align-self: center;
+  }
+  div {
+    z-index: 0;
   }
 `;

@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
+import styled from "styled-components";
 
 export default function Map({ dataAirplanes, airportLocationCord }) {
   // const position = [dataFetched.lat, dataFetched.lon];
@@ -43,12 +44,15 @@ export default function Map({ dataAirplanes, airportLocationCord }) {
             return (
               <Marker position={[plane.lat, plane.lon]} icon={GetIcon(20)}>
                 <Popup>
-                  callsign: {plane.call} <br />
-                  from: {plane.from} <br />
-                  to: {plane.to} <br />
-                  plane homeland: {plane.cou} <br />
-                  model: {plane.type} <br />
-                  altitute: {plane.alt}
+                  Callsign: {plane.call} <br />
+                  From: {plane.from} <br />
+                  To: {plane.to} <br />
+                  Plane homeland: {plane.cou} <br />
+                  Model: {plane.type} <br />
+                  Altitute: {plane.alt} ft
+                  <br />
+                  Direction: {plane.trak} ° <br />
+                  Speed: {plane.spd} kts
                 </Popup>
               </Marker>
             );
