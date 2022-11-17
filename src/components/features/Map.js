@@ -4,7 +4,6 @@ import L from "leaflet";
 export default function Map({ dataAirplanes, airportLocationCord }) {
   // const position = [dataFetched.lat, dataFetched.lon];
   const position = [53.633354, 9.999303];
-  console.log(dataAirplanes);
 
   function GetIcon(_iconSize) {
     return L.icon({

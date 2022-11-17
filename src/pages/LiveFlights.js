@@ -13,9 +13,6 @@ export default function LiveFlights() {
     const lon = airportLocation?.lon;
     setAirportLocationCord({ lat: lat, lon: lon });
   }
-  useEffect(() => {
-    console.log(airportLocationCord);
-  }, [airportLocationCord]);
   return (
     <Block>
       <AirportSelect selectedAirport={onSelect} />
