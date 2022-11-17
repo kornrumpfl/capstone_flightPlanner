@@ -36,7 +36,7 @@ export default function Map({ dataAirplanes, airportLocationCord }) {
       ) : null}
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url={`https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_CUSTOM_MAP_KEY}`}
       />
 
       {dataAirplanes.length !== 0
