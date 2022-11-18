@@ -8,15 +8,15 @@ import {
 } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import DepartureLogo from "../logos/departurelogo";
-import ArrivalLogo from "../logos/arrivallogo";
-import DateandTimeLogo from "../logos/dateandtimelogo";
-import PassengersLogo from "../logos/passengerslogo";
-import HomeLogo from "../logos/homelogo";
-import SavedLogo from "../logos/savedlogo";
+import DepartureLogo from "../components/logos/departurelogo";
+import ArrivalLogo from "../components/logos/arrivallogo";
+import DateandTimeLogo from "../components/logos/dateandtimelogo";
+import PassengersLogo from "../components/logos/passengerslogo";
+import HomeLogo from "../components/logos/homelogo";
+import SavedLogo from "../components/logos/savedlogo";
 import L from "leaflet";
 import { useState } from "react";
-import AirplaneLogo from "../logos/airplanelogo";
+import AirplaneLogo from "../components/logos/airplanelogo";
 
 export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const position = [53.633354, 9.999303];
@@ -27,8 +27,6 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
   const [flightDate, setFlightDate] = useState();
   const [flightTime, setFlightTime] = useState();
   const blackOptions = { color: "black" };
-  console.log(arrivalLocation);
-  console.log(departureLocation);
   function onHandleSavePlan(event) {
     event.preventDefault();
     onSavePlan(
@@ -49,7 +47,7 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
 
   function GetIcon(_iconSize) {
     return L.icon({
-      iconUrl: require("../logos/airplane-flying.png"),
+      iconUrl: require("../components/logos/airplane-flying.png"),
       iconSize: [_iconSize],
       iconAnchor: [22, 17],
     });
@@ -161,13 +159,9 @@ export default function FlightPlan({ flightPlanData, onSavePlan }) {
               <ChangeView center={GetNewCenter()} zoom={getNewZoom()} />
             )
           ) : null}
-          {/* <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url={`https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_CUSTOM_MAP_KEY}`}
-          /> */}
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url={`https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_CUSTOM_MAP_KEY}`}
           />
           {departureLocation ? (
             <Marker

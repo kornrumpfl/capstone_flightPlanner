@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import DeleteLogo from "../logos/deletelogo";
-import LoadLogo from "../logos/loadlogo";
+import DeleteLogo from "../components/logos/deletelogo";
+import LoadLogo from "../components/logos/loadlogo";
 
 export default function SavedFlightPlans({
   savedFlightPlanData,

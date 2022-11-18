@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import Main from "./components/Main";
-import Navigation from "./components/navigation/Navigation";
+import Main from "./pages/Main";
+import Navigation from "./components/features/Navigation";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import LiveFlights from "./components/live/LiveFlights";
-import SavedFlightPlans from "./components/saved/SavedFlightPlans";
-import FlightPlan from "./components/flightPlan/flightPlan";
+import LiveFlights from "./pages/LiveFlights";
+import SavedFlightPlans from "./pages/SavedFlightPlans";
+import FlightPlan from "./pages/flightPlan";
 import Error from "./pages/Error";
 import { useEffect, useState } from "react";
-import { saveToLocal, loadFromLocal } from "../src/components/LocalStorage";
+import { saveToLocal, loadFromLocal } from "./components/features/LocalStorage";
 import initialData from "./components/initialData/initialData";
 
 function App() {

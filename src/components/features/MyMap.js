@@ -10,7 +10,6 @@ export default function MyMap({ airportLocationCord }) {
     },
     "X-RapidAPI-Host": "adsbx-flight-sim-traffic.p.rapidapi.com",
   };
-  console.log(airportLocationCord);
   useEffect(() => {
     getDataPlanes();
   }, [airportLocationCord]);
@@ -22,7 +21,6 @@ export default function MyMap({ airportLocationCord }) {
         options
       );
       const newData = await response.json();
-      console.log(newData.ac);
       setDataAirplanes(newData.ac);
     } catch (error) {
       console.log(error);

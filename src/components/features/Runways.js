@@ -13,11 +13,17 @@ export default function Runways({ icao, selectedRunwayPlusLocation }) {
   }
 
   return (
-    <select onChange={onSelect}>
-      <option value="--" aria-label="initial state"></option>
-      {dataFetched?.runways?.map((item) => {
-        return <option value={item.ident}>{item.ident}</option>;
-      })}
-    </select>
+    <div>
+      {dataFetched.message === "Not Found" ? (
+        <span>invalid ICAO code</span>
+      ) : (
+        <select onChange={onSelect}>
+          <option value="--" aria-label="initial state"></option>
+          {dataFetched?.runways?.map((item) => {
+            return <option value={item.ident}>{item.ident}</option>;
+          })}
+        </select>
+      )}
+    </div>
   );
 }

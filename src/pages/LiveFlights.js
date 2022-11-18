@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import MyMap from "../MyMap";
-import Airports from "../initialData/Airports";
-import AirportSelect from "../features/AirportsSelect";
+import MyMap from "../components/features/MyMap";
+import Airports from "../components/initialData/Airports";
+import AirportSelect from "../components/features/AirportsSelect";
 
 export default function LiveFlights() {
   const [airportLocationCord, setAirportLocationCord] = useState();
@@ -13,9 +13,6 @@ export default function LiveFlights() {
     const lon = airportLocation?.lon;
     setAirportLocationCord({ lat: lat, lon: lon });
   }
-  useEffect(() => {
-    console.log(airportLocationCord);
-  }, [airportLocationCord]);
   return (
     <Block>
       <AirportSelect selectedAirport={onSelect} />

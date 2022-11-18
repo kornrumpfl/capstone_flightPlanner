@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Runways from "./features/Runways";
-import Aircraft from "./features/Aircraft";
+import Runways from "../components/features/Runways";
+import Aircraft from "../components/features/Aircraft";
 
 export default function Main({ onHandleSubmit }) {
   const navigate = useNavigate();
@@ -13,16 +13,29 @@ export default function Main({ onHandleSubmit }) {
   const [arrivalAirport, setArrivalAirport] = useState("");
   const [departureLocation, setDepartureLocation] = useState();
   const [arrivalLocation, setArrivalLocation] = useState();
+  const [id, setId] = useState();
 
   function onSubmit(event) {
     event.preventDefault();
     const form = event.target;
-    const { id } = form.elements;
     const { flightDate } = form.elements;
     const { flightTime } = form.elements;
     const { numberOfPassengers } = form.elements;
+
+    if (departureRunway === undefined || departureRunway === "--") {
+      alert("please select departure runway");
+      return null;
+    }
+    if (arrivalRunway === undefined || arrivalRunway === "--") {
+      alert("please select arrival runway");
+      return null;
+    }
+    if (aircraft === undefined || aircraft === "--") {
+      alert("please select aircraft");
+      return null;
+    }
     onHandleSubmit(
-      id.value,
+      id,
       departureAirport,
       departureRunway,
       arrivalAirport,
@@ -35,6 +48,22 @@ export default function Main({ onHandleSubmit }) {
       arrivalLocation
     );
     navigate("/flightplan");
+  }
+
+  function handleDepartureAirportChange(event) {
+    if (event.target.value.match("^[A-Z0-9]*$")) {
+      setDepartureAirport(event.target.value);
+    }
+  }
+  function handleArrivalAirportChange(event) {
+    if (event.target.value.match("^[A-Z0-9]*$")) {
+      setArrivalAirport(event.target.value);
+    }
+  }
+  function handleFlightNumberChange(event) {
+    if (event.target.value.match("^[A-Z0-9]*$")) {
+      setId(event.target.value);
+    }
   }
 
   function selectDepartureRunway(runway, lat, lon) {
@@ -53,10 +82,12 @@ export default function Main({ onHandleSubmit }) {
         <input
           type="text"
           id="id"
-          placeholder="ex. LK1234"
+          placeholder="Only A-Z and 0-9 ex. LK1234"
           aria-label="flight Number"
           maxLength={6}
           required={true}
+          value={id}
+          onChange={handleFlightNumberChange}
         ></input>
       </SectionFlightInfo>
       <AirportSelection>
@@ -65,17 +96,19 @@ export default function Main({ onHandleSubmit }) {
           <input
             type="text"
             id="departureAirport"
-            placeholder="Departure airport ICAO ex. EDDH"
+            placeholder="Only A-Z and 0-9 ex. EDDH"
             aria-label="departure airport"
             maxLength={4}
             required={true}
-            onChange={(event) => setDepartureAirport(event.target.value)}
+            value={departureAirport}
+            onChange={handleDepartureAirportChange}
           ></input>
           <p>Runway</p>
           {departureAirport.length > 3 ? (
             <Runways
               icao={departureAirport}
               selectedRunwayPlusLocation={selectDepartureRunway}
+              required
             />
           ) : null}
         </Departure>
@@ -84,17 +117,18 @@ export default function Main({ onHandleSubmit }) {
           <input
             type="text"
             id="arrivalAirport"
-            placeholder="Arrival airport ICAO ex. EDDB"
+            placeholder="Only A-Z and 0-9 ex. EDDB"
             aria-label="arrival airport"
             maxLength={4}
             required={true}
-            onChange={(event) => setArrivalAirport(event.target.value)}
+            onChange={handleArrivalAirportChange}
           ></input>
           <p>Runway</p>
           {arrivalAirport.length > 3 ? (
             <Runways
               icao={arrivalAirport}
               selectedRunwayPlusLocation={selectArrivalRunway}
+              required
             />
           ) : null}
         </Arrival>
@@ -107,8 +141,9 @@ export default function Main({ onHandleSubmit }) {
             type="date"
             aria-label="date"
             min={new Date().toISOString().split("T")[0]}
+            required
           />
-          <input id="flightTime" type="time" aria-label="time" />
+          <input id="flightTime" type="time" aria-label="time" required />
         </div>
       </Time>
       <AircraftStyle>
@@ -123,6 +158,7 @@ export default function Main({ onHandleSubmit }) {
           placeholder="0"
           min="0"
           aria-label="number of passengers"
+          required
         ></input>
       </NumberOfPassengers>
       <MainButtons>

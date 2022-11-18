@@ -1,15 +1,13 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
-import styled from "styled-components";
 
 export default function Map({ dataAirplanes, airportLocationCord }) {
   // const position = [dataFetched.lat, dataFetched.lon];
   const position = [53.633354, 9.999303];
-  console.log(dataAirplanes);
 
   function GetIcon(_iconSize) {
     return L.icon({
-      iconUrl: require("../components/logos/triangle.png"),
+      iconUrl: require("../logos/triangle.png"),
       iconSize: [_iconSize],
       iconAnchor: [22, 17],
     });
