@@ -22,15 +22,15 @@ export default function Main({ onHandleSubmit }) {
     const { flightTime } = form.elements;
     const { numberOfPassengers } = form.elements;
 
-    if (departureRunway === undefined || "--") {
+    if (departureRunway === undefined || departureRunway === "--") {
       alert("please select departure runway");
       return null;
     }
-    if (arrivalRunway === undefined || "--") {
+    if (arrivalRunway === undefined || arrivalRunway === "--") {
       alert("please select arrival runway");
       return null;
     }
-    if (aircraft === undefined || "--") {
+    if (aircraft === undefined || aircraft === "--") {
       alert("please select aircraft");
       return null;
     }
