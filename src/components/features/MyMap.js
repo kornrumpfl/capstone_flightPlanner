@@ -1,4 +1,4 @@
-import Map from "./Map";
+import MapLive from "./MapLive";
 import { useState, useEffect } from "react";
 
 export default function MyMap({ airportLocationCord }) {
@@ -31,7 +31,7 @@ export default function MyMap({ airportLocationCord }) {
     <div>
       {dataAirplanes ? (
         dataAirplanes.lat !== 0 ? (
-          <Map
+          <MapLive
             dataAirplanes={dataAirplanes}
             airportLocationCord={airportLocationCord}
           />

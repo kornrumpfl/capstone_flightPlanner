@@ -6,7 +6,7 @@ function Aircraft({ onSelectAircraft }) {
     <select onChange={(event) => onSelectAircraft(event.target.value)} required>
       <option value="--" aria-label="initial state"></option>
       {aircraftData?.map((item) => {
-        return <option>{item.name}</option>;
+        return <option key={item.id}>{item.name}</option>;
       })}
     </select>
   );

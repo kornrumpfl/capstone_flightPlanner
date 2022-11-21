@@ -1,8 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 
-export default function Map({ dataAirplanes, airportLocationCord }) {
-  // const position = [dataFetched.lat, dataFetched.lon];
+export default function MapLive({ dataAirplanes, airportLocationCord }) {
   const position = [53.633354, 9.999303];
 
   function GetIcon(_iconSize) {
