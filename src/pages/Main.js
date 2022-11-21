@@ -108,7 +108,6 @@ export default function Main({ onHandleSubmit }) {
             <Runways
               icao={departureAirport}
               selectedRunwayPlusLocation={selectDepartureRunway}
-              required
             />
           ) : null}
         </Departure>
