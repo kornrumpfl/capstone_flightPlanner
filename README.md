@@ -1,5 +1,11 @@
 # Flight Planner App
 
+![image](https://user-images.githubusercontent.com/112061209/203405244-26bdc964-924c-42bd-b0b4-77209de37604.png)
+![image](https://user-images.githubusercontent.com/112061209/203405445-5e2a54d0-f02c-477d-89c1-22afdd33da6c.png)
+![image](https://user-images.githubusercontent.com/112061209/203405615-0bc38af4-8c3d-4437-8e28-37486f555ed0.png)
+![image](https://user-images.githubusercontent.com/112061209/203405520-38370e01-6ac6-419f-a45d-f28bf39a905d.png)
+
+
 > as part of the final project for neuefische web dev bootcamp
 
 ## `Description`
